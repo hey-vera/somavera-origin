@@ -1,17 +1,20 @@
 # VERA DETERMINISTIC TOKEN OPERATIONS
 
-Status: proposed v1 algorithm for simulation and ratification.  
+Status: proposed v1 algorithm for simulation and ratification.
 Rule: TOKEN-SPEC.md states policy; this file makes the recommended accounting unambiguous.
 
 ## 1. Units and counters
 
 - 1 VERA equals 1,000,000,000 grain.
 - All ledger arithmetic uses unsigned integer grain. Floating point is forbidden.
+- Every consensus monetary amount or supply counter uses the `*_grain` suffix and is a canonical unsigned base-10 integer string counting grain. This is the sole consensus denomination and unit suffix.
 - genesis_supply equals zero.
 - lifetime_mint_ceiling equals 1,000,000,000 VERA.
 - total_minted is cumulative creation and never decreases.
 - total_burned is cumulative destruction and never decreases.
 - live_supply equals total_minted minus total_burned.
+
+In pseudocode, unsuffixed names are readable aliases for the corresponding consensus `*_grain` counters and always count grain. Display conversion to VERA is non-consensus presentation; implementations never perform ledger arithmetic in decimal VERA.
 
 Wrapped or bridged representations are escrow claims, not additional VERA. Every binding publishes locked, minted, burned, and outstanding amounts so global claims cannot exceed canonical live supply.
 
@@ -27,11 +30,11 @@ Gas quotas:
 - cannot vote, bond, or create a balance;
 - are visible in public state.
 
-This solves the mechanical first-transaction problem without a premine or a disguised founder allocation.
+This solves the mechanical first-transaction problem without a premine or a disguised founder allocation. The activation manifest also fixes an absolute bootstrap-consensus sunset. If the Phase E transition has not validly finalized before it, bootstrap validators finalize the required terminal checkpoint and the state machine rejects new transfers, issuance, bonds, escrows, and governance execution; bootstrap keys cannot extend the deadline.
 
 ## 3. Epochs and issuance
 
-The activation manifest fixes activation consensus time T0, epoch duration, and annual duration. The recommended values are:
+The activation manifest fixes activation consensus time T0, epoch duration, annual duration, and `tail_supply_basis = live_supply_at_anniversary`. The recommended values are:
 
 - epoch_seconds = 86,400;
 - schedule_year_seconds = 31,557,600;
@@ -64,7 +67,7 @@ At each schedule-year anniversary after year 16:
         lifetime_mint_ceiling - total_minted
       )
 
-That annual budget drips linearly across that schedule year. Unused tail budget also expires. Issuance permanently stops when total_minted reaches one billion VERA. Burns do not reopen mint capacity.
+`live_supply_at_anniversary` is the finalized canonical `total_minted - total_burned` grain count at the exact schedule anniversary. It is not market circulating supply, liquid supply, unbonded supply, or a wallet-provider estimate. The annual budget is fixed from that snapshot and drips linearly across that schedule year; later burns do not recompute it. Unused tail budget expires. Issuance permanently stops when total_minted reaches one billion VERA. Burns do not reopen mint capacity.
 
 This is a mint ceiling, not a promise that the ceiling will be reached.
 
@@ -201,4 +204,3 @@ Before ratification, publish stress results for:
 - burn and tail issuance approaching the lifetime ceiling.
 
 If the design cannot retain security without promising appreciation, passive yield, or fake work, activation remains blocked.
-

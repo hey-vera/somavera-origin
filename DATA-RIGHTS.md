@@ -1,6 +1,6 @@
 # SOMAVERA DATA RIGHTS AND INTELLIGENCE-RETURN COVENANT
 
-Status: draft 0.1  
+Status: draft 0.1
 Scope: every Soma observer, Vera host, model builder, dataset curator, and governance body.
 
 ## 1. Default rule
@@ -8,6 +8,8 @@ Scope: every Soma observer, Vera host, model builder, dataset curator, and gover
 Observation is off until a controller signs a specific consent grant. Silence, installation, token ownership, use of Soma, or use of Vera is not consent.
 
 A Soma agent must continue to function when observation is off. Refusing observation cannot reduce identity validity, reputation, access to exported intelligence, or control of the agent. A service may charge for its actual costs, but may not make surrender of private work the hidden price of participation.
+
+Observer-off means zero background observation, training, contribution, outcome-learning, watcher, or telemetry egress. It does not mean the device can never perform an intentional network action. An `ask` requires separate query authority: either a contemporaneous controller action or a signed, least-privilege task delegation that fixes destination, purpose, permitted fields, budget, and expiry. `Connect` may fetch and verify a host descriptor and perform only the disclosed handshake. Each flow previews the exact plaintext fields and routing metadata to be sent, then uses recipient encryption. Neither flow consumes or creates an observation grant, authorizes later contribution, or permits training on the query or answer.
 
 ## 2. Ownership and license
 
@@ -120,15 +122,16 @@ Private or licensed contributions do not automatically become public. “Flows b
 
 A conforming Vera host must:
 
-- authenticate the observer and consent grant before accepting bytes;
-- bind encryption associated data to subject, purpose, destination, policy, and content commitment;
-- separate encryption keys from databases and rotate them;
+- validate the signed outer routing header, sender, recipient, consent or query authority, network/context, freshness, and ciphertext commitment before decrypting or authoritatively storing a body;
+- require authenticated TLS, host-recipient encryption for every non-public contribution/query body, and Soma-recipient encryption for every complete private answer/source bundle;
+- bind encryption associated data to network/context, inner-object ID, subject, purpose, exact recipient and key, consent or query, destination, policy, expiry, and plaintext/ciphertext commitments;
+- separate host-signing, ingestion-encryption, storage-encryption, TLS, operator, backup, and recovery keys from databases and rotate them;
 - minimize logs and never log plaintext secrets;
 - enforce per-grant retention and withdrawal;
 - quarantine untrusted input and defend against prompt, model, and corpus poisoning;
 - keep transformation and evaluation provenance;
 - expose signed receipts and export endpoints;
-- disclose subprocessors, regions, model providers, and material policy changes;
+- disclose subprocessors, regions, model providers, material policy changes, and the fact that a normal privileged host can observe authorized plaintext during processing;
 - permit independent audit without exposing contributor content;
 - refuse data it cannot lawfully or technically govern.
 
@@ -142,7 +145,9 @@ Token holders cannot vote private data into public status.
 
 Required adversarial tests include:
 
-- observation-off produces zero network egress;
+- observation-off during idle/background operation produces zero observation, training, contribution, outcome-learning, watcher, or telemetry egress;
+- an authorized `ask` or `connect` sends only its previewed encrypted transaction and bounded protocol overhead, leaves observation off, and creates no contribution or training authority;
+- an autonomous `ask` without an active signed query delegation fails closed;
 - an outcome or background watcher cannot bypass consent;
 - unknown classes, destinations, purposes, and operations fail closed;
 - expired and withdrawn grants are rejected;

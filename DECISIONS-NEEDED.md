@@ -7,10 +7,11 @@ This file prevents an attractive draft from being mistaken for a finished protoc
 | Priority | Decision | Recommended starting position | Ratification evidence |
 |---|---|---|---|
 | P0 | Project boundary | Soma is identity/authority/evidence; Vera is voluntary learning; ledger is public coordination | architecture decision and schemas |
+| P0 | Product/operator boundary | HeyVera is the first product and managed operator, never the sole protocol authority | adapter contract, exit test, independent operator drill |
 | P0 | Observer behavior | off by default; per-purpose, per-class, per-destination signed grants | consent implementation and zero-egress tests |
 | P0 | Runtime secrets | outside source trees in OS/hardware-backed keystores | cross-platform key lifecycle tests |
 | P0 | Public source of truth | this standalone capsule; legacy internal notes stay private/non-normative | signed release manifest |
-| P0 | Continuity definition | OriginSpec revives rules; authenticated checkpoint revives state | recovery drill and succession vectors |
+| P0 | Continuity definition | Origin bytes create only a new Phoenix lineage; exact continuity also requires external release authenticity, complete state/replay bytes, death evidence, and checkpoint-pre-state quorums | separate Phoenix and exact-continuity drills plus succession vectors |
 | P0 | Token timing | no valuable VERA until launch gates pass | public gate report |
 | P0 | Legal classification | make no categorical label; review exact facts in each jurisdiction | published counsel scope and disclosures |
 | P1 | Consensus substrate | evaluate sovereign app-chain versus minimal settlement contract; avoid premature lock-in | threat, cost, liveness, migration comparison |
@@ -19,12 +20,14 @@ This file prevents an attractive draft from being mistaken for a finished protoc
 | P1 | Evidence model | separate assertion, execution, outcome, factual verification, and dispute | receipt schemas and adversarial fixtures |
 | P1 | Reputation | contextual, explainable, decaying, non-transferable, recomputed from evidence | public formula and Sybil/collusion analysis |
 | P1 | Vera learning target | knowledge retrieval first; training only after rights and evaluation pipeline exist | measurable quality and safety benchmark |
-| P1 | Host privacy profile | disclose privileged-host access; research TEEs/MPC/FHE only for specific workloads | dataflow model and host conformance |
+| P1 | Host privacy profile | local-first default; attested confidential worker as the preferred remote profile; MPC/FHE only for measured narrow workloads; metadata privacy separate | dataflow model, attestation policy, benchmarks, and host conformance |
 | P1 | Data license set | narrow grants; no implied universal training license | rights review and example grants |
 | P1 | Model release covenant | open public-benefit artifacts with specific safety exceptions | license, release card, appeal process |
 | P1 | Governance seats | define independent seat eligibility, terms, Sybil controls, removal | genesis policy and simulation |
 | P1 | Objective slashing | enumerate only machine-verifiable duties and proof rules | state-transition vectors |
 | P1 | Fee market | measure spam and resource costs before fixing base fees | testnet load/economic report |
+| P1 | Liquidity bootstrap | earned distribution first; no official day-one pool, LP mining, buyback, or price floor | ECONOMY.md simulation, disclosures, independent review |
+| P1 | Agent financing | bounties/prepaid service first; passive investment vaults stay outside the base protocol | product boundary and jurisdiction-specific review |
 | P1 | Issuance envelope | accept, revise, or reject TOKEN-SPEC.md ceilings before activation | independent simulation and vote |
 | P1 | Activation distribution | zero premine and deterministic earned issuance is recommended | token activation manifest |
 | P1 | Intellectual property | Apache-2.0 code/docs; separately define trademarks, data, model weights | LICENSE, trademark, data/model licenses |
@@ -40,29 +43,31 @@ The token activation manifest must contain final, integer or rational values for
 1. network and asset lineage IDs;
 2. name, symbol, decimals, denomination, and address format;
 3. genesis supply and every genesis balance;
-4. issuance ceiling at every schedule boundary;
-5. measurement and anti-replay rules for every rewarded duty;
-6. fee calculation and split;
-7. bond, unbond, jail, and objective slash conditions;
-8. validator bootstrap set and automatic sunset;
-9. chamber eligibility, quorum, thresholds, and timelocks;
-10. treasury keys and hard authority limits;
-11. checkpoint cadence and external anchors;
-12. same-lineage migration and double-spend prevention;
-13. source, compiler, binary, contract, and schema hashes;
-14. audit reports, economic simulation, and legal disclosures;
-15. activation height/time and abort conditions.
+4. issuance ceiling at every schedule boundary, all expressed as integer grain;
+5. the exact `live_supply_at_anniversary` tail basis, anniversary snapshot/freeze rule, and lifetime-headroom rule;
+6. measurement and anti-replay rules for every rewarded duty;
+7. fee calculation and split;
+8. bond, unbond, jail, and objective slash conditions;
+9. validator bootstrap set, terms, permitted rotation, and automatic sunset;
+10. chamber eligibility, quorum, thresholds, and timelocks;
+11. treasury keys and hard authority limits;
+12. checkpoint cadence and external anchors;
+13. same-lineage migration and double-spend prevention;
+14. source, compiler, binary, contract, and schema hashes;
+15. audit reports, economic simulation, and legal disclosures;
+16. activation height/time, absolute bootstrap sunset, terminal-halt behavior, and abort conditions.
 
 If any value is TBD, the token is not ready to activate.
 
 ## Near-term sequence
 
-1. Ratify mission, rights, boundaries, and consent semantics.
-2. Replace the prototypes’ unsafe defaults and secrets.
-3. Implement signed evidence and independent receipts without a valuable token.
-4. Run 5–10 agent, multi-host, non-sensitive pilots.
-5. Add checkpointed deterministic ledger testnet and recovery drills.
-6. Prove useful Vera improvement with poisoning and privacy measurement.
-7. Reach independent operator and usage gates.
-8. Finalize token activation only after security, economics, and legal review.
+1. Freeze the root OriginSpec and the two module OriginSpecs.
+2. Freeze executable Soma and Vera Host Prototype Specs plus shared conformance tests.
+3. Replace unsafe prototype defaults and secrets.
+4. Implement signed evidence and independent receipts without a valuable token.
+5. Run 5-10 agent, multi-host, non-sensitive pilots.
+6. Add a checkpointed deterministic ledger testnet, then run separate origin-only Phoenix and exact-continuity succession drills.
+7. Prove useful Vera improvement with poisoning and privacy measurement.
+8. Reach independent operator and usage gates.
+9. Finalize token activation only after security, economics, and legal review.
 

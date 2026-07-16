@@ -18,7 +18,24 @@ No constituency controls every plane.
 
 One human or organization may not occupy more than one chamber seat in the same vote. Common control, employment, financing, and conflicts are disclosed.
 
-Seat selection, eligibility, term limits, and Sybil controls are fixed in each network genesis. Until a ratified method exists, the bootstrap set is credentialed and publicly named; it is not described as permissionless.
+Seat selection, eligibility, term limits, Sybil controls, per-chamber thresholds, keys, organizations, common controllers, and conflicts are fixed by the genesis-bound chamber seat manifest. A signature array is only transport; validators count signatures against that exact manifest and threshold. Until a ratified method exists, the bootstrap set is credentialed and publicly named; it is not described as permissionless.
+
+Initial genesis has no ledger pre-state. Its unsigned genesis core therefore commits the complete bootstrap seat and ratification-authority manifests, exact thresholds, terms, and expiry before anyone signs. Genesis signatures prove that those disclosed bootstrap parties assented to those exact bytes; they do not establish inherited historical legitimacy. Every later authorization is validated against authority materialized in the immediately preceding finalized pre-state, and keys proposed by the action cannot authorize that action.
+
+### 2.1 Temporary pre-token activation chamber
+
+A zero-supply network has no token holders, so it cannot truthfully use token-weighted economic governance. Genesis therefore names a **temporary activation chamber** in the economic role. Its credentialed members, selection rationale, conflicts, keys, threshold, start, and absolute expiry are disclosed in the genesis seat manifest.
+
+The temporary chamber may:
+
+- join ordinary pre-token G0/G1 decisions within already ratified caps; and
+- approve or reject one fully specified, zero-supply token activation proposal after every pre-activation gate and challenge period passes.
+
+It may not mint, allocate, sell, transfer, promise, price, buy, pool, or reserve VERA; select issuance recipients; create conversion claims; change the lifetime ceiling; spend future fees; or waive an activation gate. First-epoch eligibility and caps are deterministic rules committed before the vote, not a chamber allocation.
+
+Its authority automatically sunsets at the earlier of the genesis expiry or completion of the first post-distribution economic-chamber election defined by the activation manifest. After activation it may vote only on emergency recovery/continuity until that election; G2 economic changes and discretionary treasury decisions remain disabled. If no valid activation occurs before expiry, activation remains blocked until a new tokenless genesis/release and seat manifest are independently ratified. The temporary chamber cannot extend or reappoint itself.
+
+A permanent economic chamber is selected only after VERA has been earned under the deterministic activation rules and the disclosed distribution/anti-concentration threshold is met. The activation manifest fixes its election window and automatic handoff; founder allocation cannot create its electorate.
 
 ## 3. Proposal classes
 
@@ -47,6 +64,10 @@ Unless genesis adopts stricter thresholds:
 
 Economic voting uses a disclosed anti-concentration function ratified at activation, not an undocumented wallet count. Operator and public chambers use one vote per occupied independent seat.
 
+Before activation, economic-role signatures are validated against the active temporary-activation seat manifest rooted in genesis and materialized in the immediately preceding finalized pre-state, never against token balances. Only precommitted key rotations may alter its signing keys; its membership, threshold, term, and expiry cannot be rewritten by the proposal being authorized. After the automatic handoff, signatures are validated against the active post-distribution economic seat manifest. A missing or expired chamber cannot be replaced by counting arbitrary signatures; proposals requiring that chamber fail closed.
+
+For exact succession, every chamber signature and recovery-guardian signature is validated against the seat and recovery-key manifests materialized in the candidate checkpoint pre-state. Proposed new keys are proof-of-possession targets only and cannot vote themselves into authority.
+
 ## 5. Release process
 
 Every release has:
@@ -58,7 +79,7 @@ Every release has:
 - security, privacy, economic, and compatibility impact;
 - rollback limitations;
 - activation height/time and timelock;
-- signatures from the release quorum.
+- signatures from the release quorum active in the immediately preceding finalized pre-state; release payloads cannot introduce keys that authorize themselves.
 
 Consensus nodes reject an activation whose payload hash differs from the ratified release. Silent server-side rule changes have no protocol authority.
 
@@ -98,11 +119,14 @@ Recovery follows RECOVERY.md. Guardians can initiate discovery and pause; they c
 
 Exact continuity requires:
 
-- a uniquely highest valid finalized checkpoint;
+- a uniquely highest valid finalized checkpoint with complete available state/replay material;
 - two independent state replays;
 - unchanged protected state and supply;
+- satisfaction of the genesis-bound old-network-death predicate;
+- the checkpoint-era recovery threshold and every checkpoint-era chamber threshold;
 - a valid succession certificate;
-- the G3 process and challenge period.
+- the G3 process and challenge period; and
+- proof that proposed new keys did not authorize their own elevation.
 
 If these conditions fail, any restart is a phoenix or a clearly named fork with a new lineage.
 

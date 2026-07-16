@@ -1,10 +1,10 @@
 # SOMAVERA ORIGIN SPEC
 
-Document ID: `somavera/origin/0.1-draft`  
-Status: **draft; not a live network constitution**  
+Document ID: `somavera/origin/0.1-draft`
+Status: **draft; not a live network constitution**
 Recovery role: human-readable root for Soma, Vera, and the VERA asset lineage.
 
-Print this file. Mirror it with the complete signed recovery capsule. A prose file can restore rules and intent; authenticated checkpoints restore state.
+Print this file. Mirror it with the complete signed recovery capsule. A prose file can restore rules and intent into a new Phoenix lineage; it cannot authenticate itself or restore historical authority. Exact state continuity additionally requires an externally authenticated release, complete checkpoint state bytes and replay material, the committed death evidence, and the authorization quorums active in the reproduced checkpoint pre-state.
 
 ## 1. Mission
 
@@ -92,7 +92,7 @@ Here and below, H is SHA-256 returning lowercase hexadecimal, HEXDEC consumes an
 - Event identifier: `H("somavera:event:v1\n" || JCS(event_core))`, where event core excludes event ID and signature.
 - Document identifier: `H("somavera:document:v1\n" || UTF8(canonical_bytes))`.
 - Merkle construction: domain-separated leaf and internal-node hashes defined by the ratified schema vectors.
-- Encryption: a ratified AEAD suite with associated data binding ciphertext to protocol version, actor, consent grant, purpose, destination, and content commitment.
+- Encryption: authenticated TLS plus bidirectional signed outer application envelopes under a ratified HPKE or equivalent hybrid recipient-encryption suite and AEAD. Non-public inner queries/contributions are encrypted to the exact host ingestion key; complete signed answers are encrypted to a fresh or pairwise Soma return key bound by the query. Associated data binds suite/version, network/context, inner-object ID, actor, exact recipient/key ID, consent or query, purpose, expiry, and plaintext/ciphertext commitments. Signing and encryption keys are purpose-separated. Sensitive local state is separately encrypted at rest under user-controlled keys.
 - Crypto agility: a new suite requires a versioned migration, overlapping verification window, downgrade protection, and conformance vectors. Algorithm names alone are not a migration plan.
 
 Every signed network event contains at least:
@@ -199,16 +199,16 @@ checkpoint_id = H(
 )
 ```
 
-Finality signatures cover the domain-separated checkpoint ID. External anchors commit to that ID and therefore sit outside the ID core. The checkpoint is mirrored across independent organizations and media and is reproducibly exportable. Private Vera data is excluded; only commitments and public artifacts may be referenced.
+Finality signatures cover the domain-separated checkpoint ID. External anchors commit to that ID and therefore sit outside the ID core. The checkpoint is mirrored across independent organizations and media and is reproducibly exportable. Private Vera data is excluded; only commitments and public artifacts may be referenced. A checkpoint used for recovery must be accompanied by the complete deterministic public-state bytes/chunks and ordered replay material needed to reproduce its root; a signed root alone is not a recovery image.
 
 ## 12. Recovery and succession
 
 There are only two honest disaster outcomes:
 
-- **Exact continuity:** import a uniquely highest valid finalized checkpoint; preserve the same network lineage ID, every public balance, supply counter, consumed receipt, issuance clock, and rule; then perform only the precommitted `RecoverySuccession` transition. That transition increments the context epoch and changes the execution context so old-substrate transactions cannot replay. The old and new asset lineage IDs are equal, or both are null for a pre-token network.
+- **Exact continuity:** authenticate the release through a trust fact outside the candidate bytes; reproduce a uniquely highest valid finalized checkpoint from complete public-state bytes/chunks and ordered replay material; satisfy the committed death predicate and the recovery/chamber quorums active in that reproduced pre-state; preserve the same network lineage ID, every public balance, supply counter, consumed receipt, issuance clock, and rule; then perform only the precommitted `RecoverySuccession` transition. That transition increments the context epoch and changes the execution context so old-substrate transactions cannot replay. The old and new asset lineage IDs are equal, or both are null for a pre-token network.
 - **Phoenix genesis:** create a new network lineage from this spec when no authenticated state survives or when the community intentionally changes protected state. Old balances, reputation, consent, asset lineage, and canonical status do not carry over.
 
-Multiple exact-state successors can exist technically. The recovery certificate and public adoption establish a candidate canonical successor; users retain the right to follow another fork. The protocol never calls an ambiguous fork “settled” by fiat.
+Multiple exact-state successors can exist technically. The death predicate is a bounded policy test under named observer, clock, path, and quorum assumptions—not proof that every possible copy of the old network is gone. The recovery certificate and public adoption establish a candidate canonical successor; users retain the right to follow another fork. Any later fresh proof or conflicting valid history triggers the fork procedure. The protocol never calls an ambiguous fork “settled” by fiat.
 
 ## 13. Governance and upgrades
 
@@ -218,7 +218,7 @@ Upgrades are state transitions. A release that changes protected rights, balance
 
 ## 14. Rebuild from only this document
 
-If no authenticated checkpoint or release capsule survives:
+If no authenticated checkpoint or release capsule survives, this document may be adopted only as the constitution of a new Phoenix lineage. If no independent trust fact authenticates these bytes, publish that fact plainly; internal hashes do not create historical authority.
 
 1. Publish this recovered document verbatim and its byte hash.
 2. Create clean, independently reviewed schemas and two implementations of the event and ledger rules.
@@ -239,7 +239,7 @@ No artifact may be called apocalypse-ready until:
 - consent-off and private-class leakage tests pass;
 - replay, poisoning, Sybil/collusion, fork, rollback, and key-loss tests pass;
 - supply and checkpoint replay independently reconcile;
-- a clean-room recovery drill succeeds without founder infrastructure;
+- three separately reported origin-only Phoenix clean-room rebuilds and three separately reported exact-continuity succession drills succeed without founder infrastructure or cross-contaminated evidence;
 - releases are reproducible and signed by the ratified threshold;
 - legal rights exist for every public data/model artifact;
 - independent security, privacy, and economic reviews are public.

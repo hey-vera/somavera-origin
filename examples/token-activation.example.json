@@ -6,25 +6,27 @@
     "network_lineage_id": "somavera:network:v1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
     "activation_time": "2028-01-01T00:00:00Z",
     "activation_height": 10000000,
+    "preactivation_governance_manifest_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
     "token": {
       "name": "Vera",
       "symbol": "VERA",
       "denom": "grain",
       "decimals": 9,
-      "genesis_supply_atoms": "0"
+      "genesis_supply_grain": "0"
     },
     "issuance": {
-      "lifetime_mint_ceiling_atoms": "1000000000000000000",
+      "lifetime_mint_ceiling_grain": "1000000000000000000",
       "epoch_seconds": 86400,
       "schedule_year_seconds": 31557600,
       "cumulative_ceilings": [
-        { "elapsed_year": 1, "max_atoms": "100000000000000000" },
-        { "elapsed_year": 2, "max_atoms": "180000000000000000" },
-        { "elapsed_year": 4, "max_atoms": "300000000000000000" },
-        { "elapsed_year": 8, "max_atoms": "450000000000000000" },
-        { "elapsed_year": 16, "max_atoms": "600000000000000000" }
+        { "elapsed_year": 1, "max_grain": "100000000000000000" },
+        { "elapsed_year": 2, "max_grain": "180000000000000000" },
+        { "elapsed_year": 4, "max_grain": "300000000000000000" },
+        { "elapsed_year": 8, "max_grain": "450000000000000000" },
+        { "elapsed_year": 16, "max_grain": "600000000000000000" }
       ],
-      "tail_annual_cap_basis_points": 100
+      "tail_annual_cap_basis_points": 100,
+      "tail_supply_basis": "live_supply_at_anniversary"
     },
     "epoch_allocation": [
       { "recipient": "verified_services_hosts", "basis_points": 5000 },
@@ -82,4 +84,3 @@
     }
   ]
 }
-

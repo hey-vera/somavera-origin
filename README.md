@@ -1,20 +1,20 @@
 # Somavera Origin
 
-Status: **draft 0.1 — not ratified, not production-ready**  
-Purpose: a small, public, independently mirrorable recovery capsule for rebuilding Soma, Vera, and the VERA economic lineage after organizational or infrastructure failure.
+Status: **draft 0.1 - not ratified, not production-ready**
+Purpose: a small, public, independently mirrorable recovery capsule for rebuilding Soma and Vera rules into a new Phoenix lineage and, only when authenticated state and checkpoint-pre-state authority survive, proposing exact VERA economic continuity.
 
 No live chain or token is created by this repository. No current `somavera` prototype balance is economically valid.
 
 ## The survival promise
 
-If only `ORIGIN-SPEC.md` survives, a community can recreate the mission, immutable rights, protocol boundaries, cryptographic profile, and a clearly identified **new phoenix lineage**.
+If only `ORIGIN-SPEC.md` survives, a community can adopt the mission, immutable rights, protocol boundaries, and cryptographic profile in a clearly identified **new Phoenix lineage**. If no independent trust fact authenticates the bytes, the community must disclose that they are a candidate constitution, not historical authority.
 
-If an authenticated checkpoint capsule also survives, a community can recreate the last finalized public state and propose an **exact-continuity successor**. Cryptography can verify state continuity; it cannot manufacture social legitimacy or recover lost private keys.
+An **exact-continuity successor** additionally requires an externally authenticated release, a uniquely finalized checkpoint, complete reproducible state bytes and ordered replay material, the committed death evidence, and every recovery/chamber quorum active in the reproduced checkpoint pre-state. Cryptography can verify those bounded claims; it cannot manufacture social legitimacy, prove absolute global death, or recover lost private keys.
 
 | Surviving material | Honest result |
 |---|---|
-| Origin spec only | New compatible phoenix network; old balances do not survive |
-| Origin spec + valid finalized checkpoint | Candidate continuation from that checkpoint |
+| Origin bytes only | New compatible Phoenix network; disclose authenticity status; no historical state or balances survive |
+| Authenticated Origin + reproducible checkpoint state/replay + death evidence + pre-state quorums | Candidate exact-continuity successor after the full `RECOVERY.md` procedure |
 | Original chain still finalizing | Restart services; do not create a successor |
 | Conflicting valid checkpoints | Explicit fork; users choose; no party may claim automatic exclusivity |
 
@@ -30,18 +30,31 @@ Brainstorms, pitch decks, private notes, implementation comments, and token mark
 
 ## Start here
 
-- `ORIGIN-SPEC.md` — printable constitution and system root
-- `TOKEN-SPEC.md` — proposed revivable protocol asset and launch gates
-- `TOKEN-OPERATIONS.md` ? deterministic issuance, fees, supply invariants, and first-epoch mechanics
-- `ID-DERIVATION.md` ? exact hash projections, signature domains, and succession replay protection
-- `RECOVERY.md` — exact-continuity and phoenix procedures
-- `DATA-RIGHTS.md` — consent, privacy, licensing, and intelligence-return covenant
-- `GOVERNANCE.md` — separation of powers and anti-capture rules
-- `THREAT-MODEL.md` — adversaries, limits, and release blockers
-- `DECISIONS-NEEDED.md` — choices that must be ratified before mainnet
-- `schemas/` — machine-readable draft formats
-- `examples/` — non-canonical example manifests
-- `scripts/verify-capsule.mjs` — offline integrity check
+- [`ORIGIN-SPEC.md`](ORIGIN-SPEC.md) - printable constitution and system root
+- [`ACTUALIZATION-PLAN.md`](ACTUALIZATION-PLAN.md) - the two drag-and-drop systems, test network, and build gates
+- [`ASSURANCE-CASE.md`](ASSURANCE-CASE.md) - named safety properties, adversarial evidence, and Phoenix release gates
+- [`PHOENIX-ORIGIN.md`](PHOENIX-ORIGIN.md) - one-page recovery truth card and authenticity boundary
+- [`CONFIDENTIAL-COMPUTE.md`](CONFIDENTIAL-COMPUTE.md) - local, enclave, MPC, FHE, and metadata-protection profiles
+- [`TOKEN-SPEC.md`](TOKEN-SPEC.md) - proposed revivable protocol asset and launch gates
+- [`TOKEN-OPERATIONS.md`](TOKEN-OPERATIONS.md) - deterministic issuance, fees, supply invariants, and first-epoch mechanics
+- [`ECONOMY.md`](ECONOMY.md) - money, liquidity, pool separation, and HeyVera's economic role
+- [`ID-DERIVATION.md`](ID-DERIVATION.md) - exact hash projections, signature domains, and succession replay protection
+- [`RECOVERY.md`](RECOVERY.md) - exact-continuity and Phoenix procedures
+- [`DATA-RIGHTS.md`](DATA-RIGHTS.md) - consent, privacy, licensing, and intelligence-return covenant
+- [`GOVERNANCE.md`](GOVERNANCE.md) - separation of powers and anti-capture rules
+- [`THREAT-MODEL.md`](THREAT-MODEL.md) - adversaries, limits, and release blockers
+- [`DECISIONS-NEEDED.md`](DECISIONS-NEEDED.md) - choices that must be ratified before mainnet
+- [`SOURCES.md`](SOURCES.md) - informative standards, research, and legal starting points
+- [`specs/soma/ORIGIN-SPEC.md`](specs/soma/ORIGIN-SPEC.md) - exact Soma Origin draft
+- [`specs/soma/PROTOTYPE-SPEC.md`](specs/soma/PROTOTYPE-SPEC.md) - exact Soma Prototype draft
+- [`specs/vera-host/ORIGIN-SPEC.md`](specs/vera-host/ORIGIN-SPEC.md) - exact Vera Host Origin draft
+- [`specs/vera-host/PROTOTYPE-SPEC.md`](specs/vera-host/PROTOTYPE-SPEC.md) - exact Vera Host Prototype draft
+- [`conformance/PROTOTYPE-ACCEPTANCE.md`](conformance/PROTOTYPE-ACCEPTANCE.md) - shared executable acceptance contract
+- `specs/` - normative Soma and Vera Host module drafts
+- `schemas/` - machine-readable draft formats
+- `conformance/` - cryptographic and prototype acceptance vectors
+- `examples/` - non-canonical example manifests
+- `scripts/verify-capsule.mjs` - offline integrity check
 
 ## Non-negotiable boundary
 
@@ -53,4 +66,4 @@ Unless a file says otherwise, code and documentation are offered under Apache Li
 
 ## Current phase
 
-This is a constitutional and recovery **draft**. It becomes canonical only after public review, independent security and economic review, two interoperable implementations, conformance tests, a recovery drill, and threshold ratification recorded in a release manifest.
+This is a constitutional, implementation, and recovery **draft**. It becomes canonical only after public review, independent security and economic review, two interoperable implementations, conformance tests, separately reported origin-only Phoenix and exact-continuity recovery drills, and threshold ratification recorded in a release manifest.

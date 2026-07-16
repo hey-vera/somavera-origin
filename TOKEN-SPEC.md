@@ -1,6 +1,6 @@
 # VERA REVIVABLE PROTOCOL ASSET — TOKEN PLAN
 
-Document ID: `somavera/token/0.1-draft`  
+Document ID: `somavera/token/0.1-draft`
 Status: **recommended design; no token exists; name and symbol are provisional**
 
 ## 1. What is new about it
@@ -37,6 +37,8 @@ Token wealth never raises reputation, identity assurance, factual confidence, mo
 - Hidden or discretionary mint authority: **forbidden**
 
 Name, symbol, and precision require trademark, wallet, exchange, and legal review before ratification. Changing them after activation requires an explicit versioned migration; it never changes historical units silently.
+
+Every consensus monetary amount or supply counter uses the `*_grain` suffix and is a canonical unsigned base-10 integer string counting **grain**. This is the sole consensus denomination and unit suffix; floating point and whole-VERA interpretation are forbidden. In formulas below, readable names such as `live_supply` and `total_minted` denote those grain counters; displayed VERA amounts are converted to grain exactly before consensus arithmetic.
 
 ## 4. Why the network must work before VERA
 
@@ -82,21 +84,21 @@ Users may pay through a paymaster that accepts fiat or stablecoins and acquires 
 - Faucet-only VERA with no promised conversion.
 - At least two independent implementations.
 - Public economic simulation and attack competitions.
-- At least three full chain-death recovery drills.
+- At least three separately reported origin-only Phoenix rebuilds and three separately reported exact-continuity substrate-death succession drills.
 
 ### Phase C — activation proposal
 
-Ratify a `token-activation.json` that fixes the emission schedule, fee splits, validator transition, governance keys, challenge period, legal disclosures, software hashes, and `asset_lineage_id`. No parameter may remain “TBD.”
+Ratify a `token-activation.json` that fixes the emission schedule, `tail_supply_basis = live_supply_at_anniversary`, fee splits, bootstrap-validator term and absolute sunset, validator transition, governance keys, challenge period, legal disclosures, software hashes, and `asset_lineage_id`. Signatures are validated against the active pre-token chamber manifests rooted in genesis and materialized in the immediately preceding finalized state, at every exact threshold. Keys proposed by the activation cannot authorize themselves. No parameter may remain “TBD.”
 
 The manifest structure is normative: unsigned `activation_core`, domain-separated `activation_core_hash`, derived `asset_lineage_id`, then chamber signatures. See `ID-DERIVATION.md`; never hash the whole signed manifest.
 
 ### Phase D — zero-supply activation
 
-Activate with zero balances and a credentialed, publicly disclosed BFT validator set. The first epoch uses expiring, non-transferable, non-convertible gas quotas; VERA enters circulation only when that epoch finalizes deterministic rewards for pre-approved measured duties. Credentialed bootstrap consensus must sunset.
+Activate with zero balances and a credentialed, publicly disclosed BFT validator set. The first epoch uses expiring, non-transferable, non-convertible gas quotas; VERA enters circulation only when that epoch finalizes deterministic rewards for pre-approved measured duties. The activation manifest fixes validator terms, permitted rotations, and an absolute bootstrap-consensus sunset. Bootstrap authority cannot extend that deadline.
 
 ### Phase E — permissionless security
 
-Transition to bonded validation only after the distribution and independence gates below are satisfied. Until then, bootstrap validators have fixed terms, public conflicts, and no unilateral upgrade authority.
+Transition to bonded validation only after the distribution and independence gates below are satisfied. Until then, bootstrap validators have fixed terms, public conflicts, and no unilateral upgrade authority. If Phase E is not validly finalized before the absolute bootstrap sunset, the state machine finalizes a terminal checkpoint and halts new transfers, issuance, bonds, escrows, and governance execution; a calendar deadline never activates permissionless validation.
 
 ## 8. Recommended issuance envelope
 
@@ -115,11 +117,11 @@ maximum cumulative issuance:
   end of year 16: 600,000,000
 
 after year 16:
-  annual tail cap = min(1% of prior-year circulating supply,
+  annual tail cap = min(1% of live_supply_at_anniversary,
                         remaining lifetime mint headroom)
 ```
 
-These are ceilings, not guaranteed rewards. An epoch can mint less. Unused issuance disappears; it does not accumulate in a treasury. Burns never reopen lifetime mint headroom. Exact interpolation, integer rounding, counters, and first-epoch mechanics are in `TOKEN-OPERATIONS.md`.
+These are ceilings, not guaranteed rewards. An epoch can mint less. Unused issuance disappears; it does not accumulate in a treasury. `live_supply_at_anniversary` means the finalized canonical `total_minted - total_burned` grain counter at that anniversary—not circulating, liquid, unbonded, or outstanding market supply. The resulting annual tail budget is frozen for that schedule year; later burns affect only a later anniversary. Burns never reopen lifetime mint headroom. Exact interpolation, integer rounding, counters, and first-epoch mechanics are in `TOKEN-OPERATIONS.md`.
 
 Recommended epoch issuance allocation:
 
@@ -173,13 +175,15 @@ No automatic slash may depend on subjective model quality. Disputed evaluation w
 
 ## 11. Governance scope
 
-Token-weighted voting is only one chamber and may govern economic parameters within constitutional bounds. It cannot alone change consent, privacy, reputation formulas, evidence standards, model-release duties, recovery rules, or protected rights.
+The economic chamber is only one chamber and may govern economic parameters within constitutional bounds. Before VERA distribution it is the narrowly limited temporary activation chamber in `GOVERNANCE.md`; after the committed distribution and election trigger it becomes the active anti-concentrated token-participant chamber. Neither form can alone change consent, privacy, reputation formulas, evidence standards, model-release duties, recovery rules, or protected rights.
+
+The temporary chamber cannot mint or allocate VERA. Token-activation signatures are accepted only from the active pre-token seat manifests rooted in genesis and present in the immediately preceding finalized state, at every fixed threshold; proposed replacement keys cannot sign themselves into authority. That authority automatically sunsets as specified there.
 
 Economic proposals require:
 
-- stake chamber approval;
-- independent operator/contributor chamber approval;
-- public/data-rights chamber veto window;
+- economic chamber approval at its active threshold;
+- operator/contributor chamber approval at its active threshold;
+- public/data-rights chamber approval at its active threshold;
 - executable payload and simulation;
 - conflict disclosures;
 - minimum 30-day timelock (60 days for issuance changes).
@@ -187,6 +191,8 @@ Economic proposals require:
 Emergency keys cannot mint, transfer, seize, change supply, or alter recovery checkpoints.
 
 ## 12. Permissionless transition gates
+
+These are post-activation Phase E gates. They do not authorize Phase C ratification or Phase D valuable activation, and they do not substitute for Section 13.
 
 Bonded permissionless validation does not activate until all are true:
 
@@ -196,13 +202,15 @@ Bonded permissionless validation does not activate until all are true:
 - at least 100 independently owned Soma agents have completed real tasks;
 - at least 10 Vera hosts span five operators, three legal jurisdictions, and three infrastructure providers;
 - founder-controlled usage is below 30% for three consecutive months;
-- six months of stable testnet operation and three successful recovery drills;
+- six months of stable testnet operation, three successful origin-only Phoenix rebuilds, and three separate successful exact-continuity succession drills;
 - public audits of consensus, token, bridges/paymasters, and recovery code;
 - jurisdiction-specific securities, commodities, money-transmission, sanctions, tax, and consumer-law review.
 
-If these gates are not met, the network remains in the disclosed bootstrap phase. A calendar date cannot override the gates.
+If these gates are not met, the network may remain in the disclosed bootstrap phase only until the activation manifest's absolute bootstrap sunset. If they still are not met, the terminal-checkpoint halt rule applies. A calendar date cannot override the gates or manufacture permissionlessness.
 
 ## 13. Full token launch gates
+
+Every Section 13 gate must pass before the Phase C activation proposal is ratified and before Phase D executes. Phase E permissionless gates are additional later conditions, not substitutes.
 
 No valuable VERA activation until:
 
@@ -225,7 +233,7 @@ Restart services and hosts. Do not mint, redeploy, or snapshot-migrate the token
 
 ### Chain substrate replacement with checkpoint
 
-Import the uniquely highest valid finalized checkpoint; preserve balances, lifetime minted/burned, live supply, issuance time, and consumed receipts exactly; publish a succession certificate; change the execution context; and prevent the old substrate from remaining spendable through a ratified halt/finality rule. The new binding points to the same `asset_lineage_id`.
+Authenticate the release independently; reproduce the uniquely highest valid finalized checkpoint from complete state bytes and replay material; satisfy the committed death predicate and every checkpoint-pre-state recovery/chamber threshold; preserve balances, lifetime minted/burned, live supply, issuance time, and consumed receipts exactly; publish a succession certificate; change the execution context; and prevent old-context replay through the ratified halt/finality rule. The new binding points to the same `asset_lineage_id`; conflicting valid histories invoke the fork procedure.
 
 ### Only the OriginSpec survives
 

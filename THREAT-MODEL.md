@@ -1,6 +1,6 @@
 # SOMAVERA THREAT MODEL
 
-Status: draft 0.1  
+Status: draft 0.1
 Rule: provenance proves who asserted bytes and whether they changed. It does not prove the assertion is true, useful, lawful, or safe.
 
 ## 1. Protected assets
@@ -56,7 +56,7 @@ If these assumptions are unmet, interfaces must report degraded security rather 
 | self-issued reputation | Sybil fabricates trust | independent receipts, contextual formulas, issuer weighting, disputes, decay, collusion analysis |
 | receipt replay | repeated payment or issuance | globally unique receipt ID, consumed-state bit, actor/counterparty binding, finality |
 | mesh poisoning | hostile host imports invented knowledge | verify signatures, lineage, license, rules, content IDs, evaluations, quarantine, tombstones |
-| hidden plaintext | “encrypted” data becomes public lesson/log | dataflow review, taint tests, separate stores, minimization, release grant |
+| hidden plaintext | “encrypted” data becomes public lesson/log | local at-rest encryption, per-host recipient envelopes, dataflow review, taint tests, separate stores, minimization, release grant |
 | validator capture | balances or rules are rewritten | diverse set, concentration gates, BFT finality, light-client verification, public checkpoints |
 | governance capture | wealth buys rights or truth | three chambers, constitutional bounds, disclosure, exit and fork |
 | supply exploit | arbitrary mint or double spend | deterministic issuance ceiling, replay protection, invariant replay, no hidden admin mint |
@@ -74,7 +74,7 @@ The following are not accepted controls:
 - a signature as proof that work happened;
 - a zero exit code as proof of quality;
 - stake as proof of truth;
-- encryption at rest as proof an operator cannot read data;
+- encryption at rest, TLS, or recipient encryption as proof the authorized operator cannot read data during ordinary processing;
 - several agreeing Sybils as independent verification;
 - a zero-knowledge proof as proof that the input or claim is factually true;
 - a hidden benchmark as permanent poisoning protection;
@@ -104,4 +104,3 @@ Security review is continuous. “Audit passed” is not a permanent property.
 ## 7. Current prototype disposition
 
 The July 2026 soma and vera-host prototypes are demonstrations only. They must not process real secrets, private work, valuable balances, or adversarial public traffic until their findings in the private audit are fixed and the conformance gates above pass.
-
