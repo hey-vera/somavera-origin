@@ -1,0 +1,48 @@
+{
+  "$schema": "../schemas/recovery-certificate.schema.json",
+  "schema_version": "somavera.recovery-certificate.v1",
+  "certificate_id": "1111111111111111111111111111111111111111111111111111111111111111",
+  "mode": "exact_continuity",
+  "reason": "Example substrate replacement after the former chain permanently halted.",
+  "old_network_lineage_id": "somavera:network:v1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "new_network_lineage_id": "somavera:network:v1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "old_execution_context_id": "somavera:context:v1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "new_execution_context_id": "somavera:context:v1:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "old_context_epoch": 0,
+  "new_context_epoch": 1,
+  "last_checkpoint_id": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "last_checkpoint_height": 28800,
+  "imported_state_root": "3333333333333333333333333333333333333333333333333333333333333333",
+  "post_succession_state_root": "5555555555555555555555555555555555555555555555555555555555555555",
+  "old_asset_lineage_id": "vera:rpa:v1:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "new_asset_lineage_id": "vera:rpa:v1:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "origin_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "protocol_release_hash": "7777777777777777777777777777777777777777777777777777777777777777",
+  "successor_genesis_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "successor_binding_hash": "6666666666666666666666666666666666666666666666666666666666666666",
+  "recovery_succession_transition_hash": "8888888888888888888888888888888888888888888888888888888888888888",
+  "governance_decision_hash": "4444444444444444444444444444444444444444444444444444444444444444",
+  "challenge_started_at": "2028-02-01T00:00:00Z",
+  "challenge_ends_at": "2028-04-01T00:00:00Z",
+  "ratification_signatures": [
+    {
+      "role": "economic_chamber",
+      "key_id": "did:key:example-economic#key-1",
+      "suite": "Ed25519-v1",
+      "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+    },
+    {
+      "role": "operator_contributor_chamber",
+      "key_id": "did:key:example-operator#key-1",
+      "suite": "Ed25519-v1",
+      "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+    },
+    {
+      "role": "public_data_rights_chamber",
+      "key_id": "did:key:example-public#key-1",
+      "suite": "Ed25519-v1",
+      "value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+    }
+  ]
+}
+

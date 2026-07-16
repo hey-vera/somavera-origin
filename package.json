@@ -1,0 +1,17 @@
+{
+  "name": "somavera-origin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Public Somavera origin, conformance, and disaster-recovery capsule",
+  "type": "module",
+  "license": "Apache-2.0",
+  "scripts": {
+    "check": "node scripts/check-conformance.mjs",
+    "manifest": "node scripts/build-manifest.mjs",
+    "verify": "node scripts/verify-capsule.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
+

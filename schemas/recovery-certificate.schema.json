@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:somavera:schema:recovery-certificate:v1",
+  "title": "Somavera Recovery Certificate v1",
+  "$comment": "certificate_id and signature domains are defined in ID-DERIVATION.md; equality invariants require conformance checks",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "certificate_id",
+    "mode",
+    "reason",
+    "old_network_lineage_id",
+    "new_network_lineage_id",
+    "old_execution_context_id",
+    "new_execution_context_id",
+    "old_context_epoch",
+    "new_context_epoch",
+    "last_checkpoint_id",
+    "last_checkpoint_height",
+    "imported_state_root",
+    "post_succession_state_root",
+    "old_asset_lineage_id",
+    "new_asset_lineage_id",
+    "origin_hash",
+    "protocol_release_hash",
+    "successor_genesis_hash",
+    "successor_binding_hash",
+    "recovery_succession_transition_hash",
+    "governance_decision_hash",
+    "challenge_started_at",
+    "challenge_ends_at",
+    "ratification_signatures"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": { "const": "somavera.recovery-certificate.v1" },
+    "certificate_id": { "$ref": "#/$defs/hash" },
+    "mode": {
+      "enum": ["exact_continuity", "phoenix", "explicit_fork"]
+    },
+    "reason": { "type": "string", "minLength": 20, "maxLength": 4096 },
+    "old_network_lineage_id": {
+      "oneOf": [
+        { "$ref": "#/$defs/network_id" },
+        { "type": "null" }
+      ]
+    },
+    "new_network_lineage_id": { "$ref": "#/$defs/network_id" },
+    "old_execution_context_id": {
+      "oneOf": [
+        { "$ref": "#/$defs/context_id" },
+        { "type": "null" }
+      ]
+    },
+    "new_execution_context_id": { "$ref": "#/$defs/context_id" },
+    "old_context_epoch": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "new_context_epoch": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "last_checkpoint_id": {
+      "oneOf": [
+        { "$ref": "#/$defs/hash" },
+        { "type": "null" }
+      ]
+    },
+    "last_checkpoint_height": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "imported_state_root": {
+      "oneOf": [
+        { "$ref": "#/$defs/hash" },
+        { "type": "null" }
+      ]
+    },
+    "old_asset_lineage_id": {
+      "oneOf": [
+        { "$ref": "#/$defs/asset_id" },
+        { "type": "null" }
+      ]
+    },
+    "post_succession_state_root": {
+      "oneOf": [
+        { "$ref": "#/$defs/hash" },
+        { "type": "null" }
+      ]
+    },
+    "new_asset_lineage_id": {
+      "oneOf": [
+        { "$ref": "#/$defs/asset_id" },
+        { "type": "null" }
+      ]
+    },
+    "origin_hash": { "$ref": "#/$defs/hash" },
+    "protocol_release_hash": { "$ref": "#/$defs/hash" },
+    "successor_genesis_hash": { "$ref": "#/$defs/hash" },
+    "successor_binding_hash": { "$ref": "#/$defs/hash" },
+    "recovery_succession_transition_hash": {
+      "oneOf": [
+        { "$ref": "#/$defs/hash" },
+        { "type": "null" }
+      ]
+    },
+    "governance_decision_hash": { "$ref": "#/$defs/hash" },
+    "challenge_started_at": { "type": "string", "format": "date-time" },
+    "challenge_ends_at": { "type": "string", "format": "date-time" },
+    "ratification_signatures": {
+      "type": "array",
+      "minItems": 3,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/signature" }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "mode": { "const": "exact_continuity" } },
+        "required": ["mode"]
+      },
+      "then": {
+        "properties": {
+          "old_network_lineage_id": { "$ref": "#/$defs/network_id" },
+          "old_execution_context_id": { "$ref": "#/$defs/context_id" },
+          "old_context_epoch": { "type": "integer", "minimum": 0 },
+          "last_checkpoint_id": { "$ref": "#/$defs/hash" },
+          "last_checkpoint_height": { "type": "integer", "minimum": 0 },
+          "imported_state_root": { "$ref": "#/$defs/hash" },
+          "post_succession_state_root": { "$ref": "#/$defs/hash" },
+          "recovery_succession_transition_hash": { "$ref": "#/$defs/hash" }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "mode": { "const": "phoenix" } },
+        "required": ["mode"]
+      },
+      "then": {
+        "properties": {
+          "old_execution_context_id": { "type": "null" },
+          "old_context_epoch": { "type": "null" },
+          "new_context_epoch": { "const": 0 },
+          "last_checkpoint_id": { "type": "null" },
+          "last_checkpoint_height": { "type": "null" },
+          "imported_state_root": { "type": "null" },
+          "post_succession_state_root": { "type": "null" },
+          "new_asset_lineage_id": { "type": "null" },
+          "recovery_succession_transition_hash": { "type": "null" }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "network_id": {
+      "type": "string",
+      "pattern": "^somavera:network:v1:[a-f0-9]{64}$"
+    },
+    "asset_id": {
+      "type": "string",
+      "pattern": "^vera:rpa:v1:[a-f0-9]{64}$"
+    },
+    "context_id": {
+      "type": "string",
+      "pattern": "^somavera:context:v1:[a-f0-9]{64}$"
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "key_id", "suite", "value"],
+      "properties": {
+        "role": {
+          "enum": [
+            "recovery_guardian",
+            "economic_chamber",
+            "operator_contributor_chamber",
+            "public_data_rights_chamber"
+          ]
+        },
+        "key_id": { "type": "string", "minLength": 3, "maxLength": 512 },
+        "suite": { "const": "Ed25519-v1" },
+        "value": {
+          "type": "string",
+          "contentEncoding": "base64",
+          "minLength": 80,
+          "maxLength": 128
+        }
+      }
+    }
+  }
+}
+
