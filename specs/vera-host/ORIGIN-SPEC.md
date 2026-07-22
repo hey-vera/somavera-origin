@@ -546,7 +546,10 @@ return-key separation, host-ingestion-key rotation, per-destination
 re-encryption, bounded-memory handling, storage-key maintenance records,
 encrypted backup, and restore vectors are mandatory parts of those gates. The
 shared Soma/Vera descriptor path, protocol/action registry, schemas, domains,
-and vectors must be byte-identical release inputs.
+and vectors must be byte-identical release inputs. Descriptor succession additionally
+requires monotonic sequence and exact predecessor linkage, precommitted overlap
+keys, retained historic keys, dual role-separated continuity signatures, explicit
+client reconfirmation, and rejection of emergency recovery through the ordinary path.
 
 The current prototype's public bind default, plaintext peer URLs, reusable
 operator token, unsigned sync/import, mutable lessons, contribution scores,

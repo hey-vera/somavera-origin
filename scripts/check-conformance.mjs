@@ -7,6 +7,9 @@ await import("./lib/recovery-conformance.mjs");
 // Exact noncircular recovery identifiers and signature-message projections.
 await import("./lib/recovery-domain-conformance.mjs");
 
+// Closed ordinary Vera host descriptor succession and adversarial rotation checks.
+await import("./lib/host-succession-conformance.mjs");
+
 // Standards-complete JSON Schema 2020-12 validation for every schema/example pair.
 await import("./lib/full-schema-conformance.mjs");
 

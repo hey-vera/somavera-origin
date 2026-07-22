@@ -602,6 +602,7 @@ This module draft cannot become a frozen prototype contract until the capsule ra
 - the local evidence-ledger wrapper schema and vectors;
 - explicit consent field projection and replication semantics;
 - host descriptor, contribution acknowledgement, withdrawal receipt, Vera query, and Vera answer-bundle schemas;
+- the closed ordinary host-descriptor succession schema, monotonic predecessor rule, precommitted overlap policy, dual role-separated signatures, controller reconfirmation rule, and adversarial vectors;
 - the active AEAD, local-store and owner-state-backup encryption, password-KDF or recipient-encryption profile, backup manifest/snapshot schema, and restore vectors;
 - the host-ingestion and Soma-return encryption-key descriptors, bidirectional outer-envelope schemas/signatures, HPKE or equivalent recipient-encryption suite, associated-data projection, rotation/retention rules, metadata-leakage disclosure, and valid/invalid vectors;
 - production keystore behavior on every supported platform;

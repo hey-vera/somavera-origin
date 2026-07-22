@@ -60,8 +60,8 @@
     },
     {
       "path": "ID-DERIVATION.md",
-      "bytes": 33253,
-      "sha256": "c624ba3797bac0f995276451978b62ed332137e0ba62d8aa998d9c41419af2a4"
+      "bytes": 35834,
+      "sha256": "5962cb9fbc4c62ba5af08b8a4fcea9ea37f270d4b492ec21edc04d30bd757b3c"
     },
     {
       "path": "LICENSE",
@@ -105,8 +105,8 @@
     },
     {
       "path": "THREAT-MODEL.md",
-      "bytes": 7016,
-      "sha256": "6d69d7fc20d40fb3751a1da85adfb874067e5d467acd0e025d3ef9149dffea14"
+      "bytes": 7338,
+      "sha256": "379c2ceef6f24df6f22aec9fc95dfd85d211990529d4cc57da19ab2c42b549f3"
     },
     {
       "path": "TOKEN-OPERATIONS.md",
@@ -120,13 +120,13 @@
     },
     {
       "path": "conformance/PROTOTYPE-ACCEPTANCE.md",
-      "bytes": 74314,
-      "sha256": "33d4a8788f12adc7b7a140dada60f1aef78f63cbdafcb0d07ac1143b3419526b"
+      "bytes": 75175,
+      "sha256": "56f6fee3feb55936522376f8e833099570d74228e9f3cc5a17efe9c02929e811"
     },
     {
       "path": "conformance/README.md",
-      "bytes": 1810,
-      "sha256": "8b9c05ff1618c364a983326e7e964145b3b0c9e99679ee4285d83405508771c2"
+      "bytes": 2427,
+      "sha256": "6d7e75eb04a2e0b017b2f1926174b601c50b6ae8204869db56b292fbd9ee3633"
     },
     {
       "path": "conformance/canonicalization-v1.json",
@@ -137,6 +137,16 @@
       "path": "conformance/ed25519-rfc8032-v1.json",
       "bytes": 457,
       "sha256": "56ba16b7555a516d56f2a61fee06b9fd0cd0745a7f8719784812ad9285f07cd0"
+    },
+    {
+      "path": "conformance/host-descriptor-succession-invalid-v1.json",
+      "bytes": 2794,
+      "sha256": "d0bdd2dc14f3222c13d63a5278f074b75e1429353a7c1f7437a47ae20a62d986"
+    },
+    {
+      "path": "conformance/host-descriptor-succession-v1.json",
+      "bytes": 30783,
+      "sha256": "d27d3d31a006944497cda1817ba18d22cafd1ddf78f76e5f9aa2201863b8e338"
     },
     {
       "path": "conformance/recovery-adversarial-v1.json",
@@ -259,9 +269,14 @@
       "sha256": "ab0edc4655a1b5f6ae0d461fdc833deaacaa9f5a69adddc8c4866cea79f12b30"
     },
     {
+      "path": "examples/vera-host-descriptor-succession.example.json",
+      "bytes": 2029,
+      "sha256": "47a91c620ea6b4ec05b46a3c968181dded113e224b2a0205f3cd39ce4073c0bd"
+    },
+    {
       "path": "examples/vera-host-descriptor.example.json",
-      "bytes": 5210,
-      "sha256": "96ff290327e20e6750060193c757dfdbc1b6ea59a331ffd6f3de042c6d0a891e"
+      "bytes": 5908,
+      "sha256": "3aac1d8683802f4f946615a430e17da4c7e3787995fdeec1f7bba9e25093fae2"
     },
     {
       "path": "package-lock.json",
@@ -374,9 +389,14 @@
       "sha256": "b62b19a16aa669a137e857fdb1ebf7f3dbecf7aa49644da5e57e6713b9646997"
     },
     {
+      "path": "schemas/vera-host-descriptor-succession.schema.json",
+      "bytes": 5032,
+      "sha256": "73fd5fca6593f6c12b4b624aec1d985bafef4b5b86f324ce869af8ff582097be"
+    },
+    {
       "path": "schemas/vera-host-descriptor.schema.json",
-      "bytes": 13979,
-      "sha256": "a8c5ed5fa8c83b879cd85925d7dac8410d7b9ca894bd567be746c4b4241492f0"
+      "bytes": 16079,
+      "sha256": "ced3211a317dfe3c858966318c8154bd0af529773b090f02361112c4a7474107"
     },
     {
       "path": "scripts/build-manifest.mjs",
@@ -390,8 +410,13 @@
     },
     {
       "path": "scripts/check-conformance.mjs",
-      "bytes": 676,
-      "sha256": "8ae3deb77f69254803dfae02f23abb0d04719bb9c2561c9e794741041df939e4"
+      "bytes": 816,
+      "sha256": "6195b672f103e65d2203f611237822238ecb58b6e52cd0000c7b2a3fd59a20a1"
+    },
+    {
+      "path": "scripts/generate-host-descriptor-succession-vector.mjs",
+      "bytes": 10333,
+      "sha256": "1d602699fd2002e560abfa892191e2dba8a29a7a27930af2fe5e4a8639732cfa"
     },
     {
       "path": "scripts/lib/canonicalize.mjs",
@@ -412,6 +437,11 @@
       "path": "scripts/lib/full-schema-conformance.mjs",
       "bytes": 2875,
       "sha256": "ba2199fdbc3b85aaa68b74b42535f9249e30d278e9854ec89f6023a1ee2e8c50"
+    },
+    {
+      "path": "scripts/lib/host-succession-conformance.mjs",
+      "bytes": 17362,
+      "sha256": "a9fef2f9473c752275f6fe860dd7c4685a509a288eddff2036e33b9845a12eff"
     },
     {
       "path": "scripts/lib/recovery-conformance.mjs",
@@ -445,24 +475,24 @@
     },
     {
       "path": "specs/soma/ORIGIN-SPEC.md",
-      "bytes": 48070,
-      "sha256": "31a99c3bb66c9f20deab712d74539c86ff0f2c18c897c114443b658dee0abe55"
+      "bytes": 48273,
+      "sha256": "cafb0862f78a92a8a701638ea12890c23f5456a1c67c8601dbad241790e50040"
     },
     {
       "path": "specs/soma/PROTOTYPE-SPEC.md",
-      "bytes": 72862,
-      "sha256": "80307cbb81a744432edc9c80880de40dfe1465fd70bb1be888e99fcdb9a9b980"
+      "bytes": 73767,
+      "sha256": "6bb14b469d7a3eccdec911440e44ded64340a044246ba27a5614611c5366337a"
     },
     {
       "path": "specs/vera-host/ORIGIN-SPEC.md",
-      "bytes": 28693,
-      "sha256": "0254c93834e353b1214ce172421a95c7d1fa70efff0823854d08af9aa35cbc14"
+      "bytes": 28976,
+      "sha256": "47d96f22f3364f327a9dfc554bb85d0e1512d9f9db4cc82346c072e05b634c3d"
     },
     {
       "path": "specs/vera-host/PROTOTYPE-SPEC.md",
-      "bytes": 46628,
-      "sha256": "a84439f2a85d6439af553c7e146605d089d513defac583897526f2e3d973a99e"
+      "bytes": 47761,
+      "sha256": "2a247dae301827699d2b76d559ae24868cdae77745f46938d90b5116fff6cb0c"
     }
   ],
-  "capsule_root": "afaf365d2704d9fddb62371819fa2ce5a48f3d8323f5d9dcd8277b095517deda"
+  "capsule_root": "ee8bb4f2a851ecd103a84db988e24eb2241ec702c9f0743045a2e83008f89e7d"
 }

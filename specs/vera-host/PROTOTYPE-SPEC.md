@@ -357,9 +357,23 @@ Accepted host-confidential content is immediately encrypted under a new random
 storage DEK and nonce. The storage DEK is wrapped by a distinct storage KEK;
 neither plaintext nor a network ingestion private key persists in the object.
 
-Ingestion-key rotation publishes a signed overlapping key manifest. New streams
-use the newest key; a prior key is accepted only for an unexpired stream issued
-during the overlap. Downgrade outside that window fails. Storage-KEK rewrap
+Host signing- or ingestion-key rotation uses the closed ordinary-succession proof in
+`schemas/vera-host-descriptor-succession.schema.json`. The prior descriptor
+precommits every prospective active key as an identical, time-bounded `overlap`
+entry. The successor is sequence prior-plus-one, names the exact prior descriptor
+ID, retains historic keys, retires each replaced active key, and is independently
+signed by its new active signing key. A role-separated proof is signed by both the
+prior and successor active signing keys and binds both descriptors, active signing
+and ingestion keys, exact change scope, and a maximum 900-second validity window.
+Origin, host identity, network/context, release, policy, TLS/discovery, protocols,
+capabilities, disclosures, regions, subprocessors, retention, and limits cannot
+change in ordinary succession. The proof authorizes continuity only; clients must
+obtain separate controller confirmation before replacing a pin. New streams use
+the confirmed active ingestion key; a prior key is accepted only for an already
+bound, unexpired stream issued within its historic validity. Sequence gaps,
+uncommitted keys, downgrade, revocation, field substitution, or signature failure
+stop service. Emergency compromise recovery remains unsupported until a distinct
+precommitted recovery-authority profile is ratified. Storage-KEK rewrap
 preserves signed content, received-envelope commitments, acknowledgements, and
 object IDs. Re-encryption and rewrap append signed host-local
 storage.maintenance records containing the object/event ID, operation, old/new

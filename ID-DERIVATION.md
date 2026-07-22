@@ -270,6 +270,37 @@ The active Vera host-signing key signs:
 
 The descriptor ID, signature, TLS identity, expected host DID, origin, network, context, active keys, release, policy, exact action registries, supported protocols, query policy, regions, subprocessors, retention, model-use disclosure, metadata/operator-memory disclosure, and every capability limit all validate before a host is pinned. Duplicated bounds agree exactly, every subprocessor region is declared, and a changed field requires a new descriptor ID and fresh policy handling.
 
+### 11.1 Ordinary descriptor succession
+
+Every descriptor carries a monotonic `descriptor_sequence`, the exact `previous_descriptor_id` (null only at sequence zero), and the closed `rotation_policy`. Ordinary succession is the only transition defined here. It covers renewal and precommitted signing and/or ingestion-key rotation; it does not cover emergency recovery after compromise.
+
+    host_descriptor_succession_core = all succession-proof fields except:
+      $schema
+      succession_id
+      signatures
+
+    succession_id =
+      H(
+        "somavera:vera-host-descriptor-succession:v1\n" ||
+        JCS(host_descriptor_succession_core)
+      )
+
+The prior active signing key signs:
+
+    "somavera:vera-host-descriptor-succession-signature:v1\nprior\n" ||
+    HEXDEC(succession_id)
+
+The successor active signing key signs the distinct role domain:
+
+    "somavera:vera-host-descriptor-succession-signature:v1\nsuccessor\n" ||
+    HEXDEC(succession_id)
+
+The successor sequence is exactly prior plus one and its predecessor is the recomputed prior descriptor ID. Network lineage, execution context, host DID, origin, discovery/TLS identity, release, policy, protocols, capabilities, regions, subprocessors, disclosure, retention, limits, and rotation policy are byte-identical. Only descriptor identifiers, sequence/predecessor, key inventories and active pointers, issue/expiry times, and signature may change.
+
+A newly active key must already appear with identical key ID, purpose, suite, and public bytes as an unexpired `overlap` key in the prior descriptor. The former active key becomes `retired`; historic keys cannot disappear, change identity, reactivate, or be smuggled through this profile as revoked. Each overlap interval is bounded by `maximum_overlap_seconds`; each descriptor lifetime is bounded by `maximum_descriptor_lifetime_seconds`. The proof lasts at most 900 seconds, lies within both descriptor validity windows, binds both active signing and ingestion key IDs, and declares the exact change scope.
+
+Both descriptors, both descriptor IDs/signatures, the proof ID, and both role-separated proof signatures validate. Even then the result is only continuity evidence: it authorizes no connection, consent, disclosure, traffic, or emergency recovery. A Soma controller must display the exact change and separately confirm the successor before replacing its pin. A silent auto-follow is forbidden. Total signing-key compromise has no safe ordinary-rotation shortcut and remains blocked until a distinct precommitted recovery-authority profile is ratified.
+
 ## 12. Return-encryption descriptor and query authority
 
 A return descriptor is not independently signed. It is a complete object inside the signed inner request payload.

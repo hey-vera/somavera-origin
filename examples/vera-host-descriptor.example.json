@@ -3,6 +3,23 @@
   "schema_version": "somavera.vera-host-descriptor.v1",
   "profile_status": "freeze_blocking_draft",
   "descriptor_id": "0101010101010101010101010101010101010101010101010101010101010101",
+  "descriptor_sequence": 0,
+  "previous_descriptor_id": null,
+  "rotation_policy": {
+    "ordinary_succession": "precommitted_overlap_dual_signature_v1",
+    "successor_key_precommitment": "required_in_prior_descriptor",
+    "requires_prior_and_successor_signatures": true,
+    "requires_controller_confirmation": true,
+    "emergency_compromise_recovery": "blocked_until_recovery_authority_profile",
+    "maximum_overlap_seconds": 86400,
+    "maximum_descriptor_lifetime_seconds": 86400,
+    "allowed_change_scopes": [
+      "renewal_only",
+      "signing_key_rotation",
+      "ingestion_key_rotation",
+      "signing_and_ingestion_key_rotation"
+    ]
+  },
   "network_lineage_id": "somavera:network:v1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
   "execution_context_id": "somavera:context:v1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   "host_did": "did:key:example-vera-host",
@@ -103,7 +120,11 @@
       "tombstone.result",
       "private.error"
     ],
-    "public_routes": ["host_descriptor", "public_query", "public_pack"]
+    "public_routes": [
+      "host_descriptor",
+      "public_query",
+      "public_pack"
+    ]
   },
   "query_policy": {
     "stores_private_query_bodies": false,
@@ -114,7 +135,10 @@
     "maximum_top_k": 5
   },
   "data_regions": [
-    { "region_code": "test-region-1", "jurisdiction": "Test jurisdiction" }
+    {
+      "region_code": "test-region-1",
+      "jurisdiction": "Test jurisdiction"
+    }
   ],
   "subprocessors": [],
   "retention_behavior": {

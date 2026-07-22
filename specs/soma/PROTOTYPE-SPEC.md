@@ -321,6 +321,8 @@ Interactive trust-on-first-use without --expect-host-did MAY be permitted only i
 
 A changed host key, origin, network, execution context, policy, TLS identity, subprocessor, or region MUST stop automatic use pending verification and user confirmation. disconnect removes active routing but preserves evidence and already received intelligence.
 
+An ordinary descriptor successor MAY be presented only with the closed proof in `vera-host-descriptor-succession.schema.json`. Soma recomputes both descriptor IDs, validates both descriptor signatures, requires exact sequence/predecessor linkage, verifies the prior-active and successor-active role-separated proof signatures, and accepts a newly active key only when identical public key material was an unexpired overlap key in the prior descriptor. All non-key operational and policy fields remain identical. The proof creates an inert candidate pin; explicit controller confirmation is still required and creates no consent or send authority. Missing history, sequence gaps, uncommitted keys, scope mismatch, revocation, immutable-field change, expiry, or either bad signature fails closed. Emergency recovery after compromise is not ordinary succession and is unsupported until separately ratified.
+
 ### 7.4 Evidence
 
     soma evidence record --input EVENT.json
