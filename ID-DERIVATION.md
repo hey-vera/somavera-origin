@@ -337,6 +337,43 @@ Adoption serializes per host and revalidates the exact current prior pin, candid
 
 Crash recovery inspects the authenticated prepared transition and current pin. If the prior pin remains current, it restores or retains the inert candidate and removes the uncommitted preparation. If the exact successor pin is current, it retains complete append-only history and consumes only the matching candidate. Any third state, missing authenticated transition material, mismatched hash, competing successor, or ambiguous current pin fails closed for manual quarantine. Repeating the same confirmed subject is idempotent; a competing confirmation cannot overwrite it. Fault injection before and after every boundary plus concurrent confirmation tests are release blockers. Filesystem signatures do not independently prevent rollback by an attacker controlling both storage and controller keys; external anchors remain a separate assurance requirement.
 
+### 11.3 Portable host-trust capsule
+
+The closed capsule in `soma-host-trust-capsule.schema.json` carries every current host pin and every committed ordinary-succession transition as exact canonical JSON bytes. It contains no private key, recovery share, bearer credential, consent, question, answer, contribution, or model artifact. Embedded object paths are normalized, unique, sorted, bounded, and paired with exact byte length and SHA-256.
+
+For each host, transition IDs appear in authenticated predecessor-to-successor order:
+
+    history_chain_root =
+      H("somavera:soma-host-trust-history-chain:v1\n" ||
+        JCS(ordered_transition_ids))
+
+The host summaries are strictly ordered by host DID:
+
+    current_set_root =
+      H("somavera:soma-host-trust-current-set:v1\n" ||
+        JCS(ordered_host_summaries))
+
+The object manifest projection removes only `canonical_json_base64`; the retained path, kind, byte length, and SHA-256 still commit every embedded byte:
+
+    object_set_root =
+      H("somavera:soma-host-trust-object-set:v1\n" ||
+        JCS(ordered_object_manifest_cores))
+
+The capsule core is every field except `$schema`, `capsule_id`, and `signature`:
+
+    capsule_id =
+      H("somavera:soma-host-trust-capsule:v1\n" ||
+        JCS(capsule_core))
+
+The named active controller key signs:
+
+    "somavera:soma-host-trust-capsule-signature:v1\n" ||
+    HEXDEC(capsule_id)
+
+Verification requires an independently supplied expected controller DID and raw Ed25519 public-key hash; copying them from the same capsule provides integrity but no identity assurance. The verifier authenticates every embedded pin and transition under the source profile, reconstructs every complete chain, recomputes every summary/root/count, and rejects unknown, missing, duplicate, orphaned, forked, reordered, noncanonical, oversized, or substituted objects.
+
+The capsule is an anchor candidate, not an external anchor. Creating it does not prove that any independent medium or party retained it, does not detect rollback by itself, and authorizes no restore, pin change, connection, consent, disclosure, send, or emergency recovery. Comparing a candidate capsule with a separately preserved trusted capsule accepts only identical state or strict per-host transition-prefix extension; a missing host, shorter chain, fork, or conflicting current pin fails. A later restore profile must separately specify state installation and controller-key lifecycle.
+
 ## 12. Return-encryption descriptor and query authority
 
 A return descriptor is not independently signed. It is a complete object inside the signed inner request payload.

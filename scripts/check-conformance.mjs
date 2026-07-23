@@ -13,6 +13,9 @@ await import("./lib/host-succession-conformance.mjs");
 // Controller-signed inert pin-replacement confirmation and authority-exclusion checks.
 await import("./lib/host-confirmation-conformance.mjs");
 
+// Complete signed portable host-trust bytes with explicit non-anchor and non-restore authority.
+await import("./lib/host-trust-capsule-conformance.mjs");
+
 // Standards-complete JSON Schema 2020-12 validation for every schema/example pair.
 await import("./lib/full-schema-conformance.mjs");
 

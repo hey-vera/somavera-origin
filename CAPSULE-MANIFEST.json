@@ -25,8 +25,8 @@
     },
     {
       "path": "ASSURANCE-CASE.md",
-      "bytes": 12254,
-      "sha256": "2c25e0e118f189bb3b3aae70f0718f7dddb1dd9444d2fe9485528b8149a36847"
+      "bytes": 12568,
+      "sha256": "b1caa4b81ee8117e031a99e23e2db754af6fd3cf7d0a4a4462258fdb0733fd75"
     },
     {
       "path": "CONFIDENTIAL-COMPUTE.md",
@@ -60,8 +60,8 @@
     },
     {
       "path": "ID-DERIVATION.md",
-      "bytes": 39242,
-      "sha256": "fd75f4c48596783a491036d3b0fa0a777e2a567427ce7952cfe2d5c4d18066e3"
+      "bytes": 41697,
+      "sha256": "b6ca296ed43229c1da575e21b2323c2ceee035a1eff3fba0407f0743b5648c08"
     },
     {
       "path": "LICENSE",
@@ -105,8 +105,8 @@
     },
     {
       "path": "THREAT-MODEL.md",
-      "bytes": 7553,
-      "sha256": "42ee2aed52fdaf66696d0e331d249e16a5ecb35213bf86d703c551908c6c2382"
+      "bytes": 7973,
+      "sha256": "17f59fb933e128772f09781f6455a61db3df06df3d022df6e8a51bc55497eab0"
     },
     {
       "path": "TOKEN-OPERATIONS.md",
@@ -120,8 +120,8 @@
     },
     {
       "path": "conformance/PROTOTYPE-ACCEPTANCE.md",
-      "bytes": 75817,
-      "sha256": "a8705b8ce622d7968457df14ce32c4131b93939f36e00dd1b2f5259fbd8b7ae9"
+      "bytes": 76611,
+      "sha256": "33633ed3b59538a61499343e34ae182992496b86c15098f2c2f36b0ff227f9ff"
     },
     {
       "path": "conformance/README.md",
@@ -157,6 +157,16 @@
       "path": "conformance/host-succession-confirmation-v1.json",
       "bytes": 6302,
       "sha256": "56320521ea80724b4a72c0b1f994cc117f1edf5208ae980ac40f1e9ad9874b69"
+    },
+    {
+      "path": "conformance/host-trust-capsule-invalid-v1.json",
+      "bytes": 2537,
+      "sha256": "c6eb3a38fbac8a439e54e6a6e60986c1e5213a82d2f5c050eba5bd953a408338"
+    },
+    {
+      "path": "conformance/host-trust-capsule-v1.json",
+      "bytes": 9013,
+      "sha256": "f6f59816a86116cd2cc48ae8c55a3ec67a60999297815e3fd4fa4de591b29af6"
     },
     {
       "path": "conformance/recovery-adversarial-v1.json",
@@ -252,6 +262,11 @@
       "path": "examples/soma-host-succession-confirmation.example.json",
       "bytes": 2135,
       "sha256": "c6290966427c4f12753de59aad52bbfba1e882902c341f018d36866a2eaf1ede"
+    },
+    {
+      "path": "examples/soma-host-trust-capsule.example.json",
+      "bytes": 4111,
+      "sha256": "1f978b98d5d09aff582e067f9c78608564882c2514a9dc879e9f75f1f5c7fd59"
     },
     {
       "path": "examples/token-activation.example.json",
@@ -379,6 +394,11 @@
       "sha256": "c6ddf82438897850f86f08de5ab0caabe95cb09ac51a42b2423cdccb1bc416db"
     },
     {
+      "path": "schemas/soma-host-trust-capsule.schema.json",
+      "bytes": 5715,
+      "sha256": "b8411300b2151221480d7416e9cae462f19cd9f9d7e70ebc4b561bb5eb35398b"
+    },
+    {
       "path": "schemas/token-activation.schema.json",
       "bytes": 6930,
       "sha256": "b5b73b41a5864b2c772627bf87f300fce6b3cfaf42401b7622bec96aa445460d"
@@ -430,8 +450,8 @@
     },
     {
       "path": "scripts/check-conformance.mjs",
-      "bytes": 962,
-      "sha256": "cee24a90c5e115be2357a29fcdc120df416117c025c65719668f3140fedd62a2"
+      "bytes": 1118,
+      "sha256": "3100c243c3a0382d23fbe3749902584443a162518bd67cc44fe7c198dc444dba"
     },
     {
       "path": "scripts/generate-host-descriptor-succession-vector.mjs",
@@ -442,6 +462,11 @@
       "path": "scripts/generate-host-succession-confirmation-vector.mjs",
       "bytes": 9100,
       "sha256": "4d62e561383e55ab35cfee67972a58c32e79f68e26099f3c6eb24046f5c17a66"
+    },
+    {
+      "path": "scripts/generate-host-trust-capsule-vector.mjs",
+      "bytes": 8250,
+      "sha256": "e36cd0f3bbe1a7e162407d541124f3544517179e3fc352ad6e8b0009f34e7c9b"
     },
     {
       "path": "scripts/lib/canonicalize.mjs",
@@ -472,6 +497,11 @@
       "path": "scripts/lib/host-succession-conformance.mjs",
       "bytes": 17362,
       "sha256": "a9fef2f9473c752275f6fe860dd7c4685a509a288eddff2036e33b9845a12eff"
+    },
+    {
+      "path": "scripts/lib/host-trust-capsule-conformance.mjs",
+      "bytes": 8065,
+      "sha256": "24eef3954f30a7bd50c34596c6a2b451e777a61da9031abdcb13e9de6fe0eaf2"
     },
     {
       "path": "scripts/lib/recovery-conformance.mjs",
@@ -510,8 +540,8 @@
     },
     {
       "path": "specs/soma/PROTOTYPE-SPEC.md",
-      "bytes": 75299,
-      "sha256": "4be5a660a15f9930ea9ca7175bd512e45b4a15107c8c0d0314140442ae22c2c3"
+      "bytes": 77821,
+      "sha256": "fca6115459a84aef7dea27dc4efbbfa5d6696bff99ac50816182c1fb2d442cd9"
     },
     {
       "path": "specs/vera-host/ORIGIN-SPEC.md",
@@ -524,5 +554,5 @@
       "sha256": "5d4bcfba15649b5040b40cc8e3aeb5d396b6d3d5f1abec1ca747f0af005c8dc4"
     }
   ],
-  "capsule_root": "8cb60c8ce3199aa35c101657834eece86e8823e9d6aa8eb47a9e23db89582431"
+  "capsule_root": "24d5ad1099d9eb915e987511f9ca3725ad44e1dc599783ea1048070f497b3ac4"
 }

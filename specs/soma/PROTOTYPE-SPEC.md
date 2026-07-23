@@ -327,6 +327,20 @@ Confirmation uses the closed receipt in `soma-host-succession-confirmation.schem
 
 Receipt creation and the atomic current-pin commit MUST both occur inside the succession-proof validity window with no grace period. The transition serializes per host, revalidates under lock, durably prepares complete authenticated history, and uses one atomic current-pin replacement as its sole commit point. Recovery deterministically rolls an uncommitted preparation back to the prior pin or finalizes an already committed exact successor; ambiguity quarantines the host. The committed successor remains disconnected and has no consent, disclosure, queue, retry, or send authority. Repetition of the same confirmation is idempotent and every competing candidate conflicts. Implementations MUST fault-inject every write, sync, rename, history, cleanup, and restart boundary and race concurrent confirmations before enabling replacement.
 
+### 7.3.1 Portable host-trust preservation
+
+    soma host trust-export --out ABSOLUTE_CAPSULE.json
+    soma host trust-verify --capsule ABSOLUTE_CAPSULE.json --expect-controller-did DID --expect-controller-key-hash HASH
+    soma host trust-compare --trusted TRUSTED_CAPSULE.json --candidate CANDIDATE_CAPSULE.json --expect-controller-did DID --expect-controller-key-hash HASH
+
+`trust-export` is offline and writes one new file without overwriting an existing path. It first verifies current pins, every succession transition, and the complete chain; then embeds their exact canonical bytes in the closed `soma-host-trust-capsule.v1` object, signs it with the active controller key, verifies the result, and durably publishes it. It exports no secret, consent, evidence body, intelligence, queue, credential, recovery share, or connection authority.
+
+`trust-verify` is standalone and offline. The expected controller DID and raw Ed25519 key hash are mandatory out-of-band inputs. It bounds total and per-object bytes, rejects noncanonical JSON/base64, unsafe or duplicate paths, unsorted hosts/objects, wrong kind/path relationships, unknown source profile, object hash/size mismatch, pin or transition failure, incomplete/forked/orphaned history, count/root/ID/signature mismatch, and every widened authority claim. It does not require or modify a Soma home.
+
+`trust-compare` first verifies both capsules under the same independently supplied controller expectation. The trusted capsule is treated as independently preserved evidence only because the caller supplied its exact bytes from outside the candidate state. The candidate passes only when creation time does not go backward and every trusted host and ordered transition ID is an exact prefix of the candidate state; equal chains require the same current pin, and extended chains must cryptographically descend from it. Added hosts are allowed. Missing hosts, shorter histories, forked histories, conflicting equal-length pins, controller substitution, or ambiguous ordering fail. Comparison never installs state and grants no restore or network authority.
+
+Writing a capsule to the same device does not create independent rollback assurance. Operators seeking that assurance must preserve the exact capsule bytes or `capsule_id` on independently administered media, record the expected controller identity separately, and retain enough complete capsule bytes for the intended recovery claim. A hash alone detects change but cannot reconstruct unavailable state.
+
 ### 7.4 Evidence
 
     soma evidence record --input EVENT.json

@@ -22,6 +22,7 @@ Public releases should say **fail-closed**, **independently verifiable**, **repr
 - Sensitive local bodies remain encrypted at rest under user-controlled keys; non-public contributions/queries remain encrypted through intermediaries to the exact host ingest boundary; and complete signed answers remain encrypted back to the exact query-bound Soma return key.
 - Evidence tampering, deletion, insertion, reordering, and truncation are detectable.
 - Ordinary host succession cannot change the pin without a controller signature over the exact successor subject; crash or race recovery yields exactly the prior or successor inert pin, never connection, consent, disclosure, or send authority.
+- A portable host-trust capsule commits complete current pin and succession-history bytes and verifies offline against an independently supplied controller fingerprint; it is explicitly not an external anchor or restore authority, and detects rollback only when compared with a separately preserved prior capsule.
 - Loss, rotation, revocation, export, and exit have documented behavior without a universal backdoor.
 
 ### Vera Host
