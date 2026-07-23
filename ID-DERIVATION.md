@@ -301,6 +301,42 @@ A newly active key must already appear with identical key ID, purpose, suite, an
 
 Both descriptors, both descriptor IDs/signatures, the proof ID, and both role-separated proof signatures validate. Even then the result is only continuity evidence: it authorizes no connection, consent, disclosure, traffic, or emergency recovery. A Soma controller must display the exact change and separately confirm the successor before replacing its pin. A silent auto-follow is forbidden. Total signing-key compromise has no safe ordinary-rotation shortcut and remains blocked until a distinct precommitted recovery-authority profile is ratified.
 
+### 11.2 Controller confirmation and atomic inert-pin adoption
+
+The closed confirmation receipt is defined by `soma-host-succession-confirmation.schema.json`. Its subject is the exact ordinary succession, independent of any implementation-specific candidate filename or database row:
+
+    host_succession_confirmation_subject_core = {
+      network_lineage_id, execution_context_id, host_did, origin,
+      prior_descriptor_id, prior_descriptor_sequence,
+      successor_descriptor_id, successor_descriptor_sequence,
+      succession_id, change_scope,
+      successor_active_host_signing_key_id,
+      successor_active_host_signing_key_sha256,
+      successor_active_ingestion_key_id,
+      successor_active_ingestion_key_sha256
+    }
+
+    subject_id =
+      H("somavera:soma-host-succession-confirmation-subject:v1\n" ||
+        JCS(host_succession_confirmation_subject_core))
+
+The confirmation core is every closed receipt field except `$schema`, `confirmation_id`, and `signature`:
+
+    confirmation_id =
+      H("somavera:soma-host-succession-confirmation:v1\n" ||
+        JCS(host_succession_confirmation_core))
+
+The active Soma controller-signing key identified inside that core signs:
+
+    "somavera:soma-host-succession-confirmation-signature:v1\n" ||
+    HEXDEC(confirmation_id)
+
+The verifier recomputes the subject directly from the pinned prior descriptor, verified successor, and verified succession proof. Both successor active-key hashes are SHA-256 over the canonical decoded 32-byte public key. Receipt creation and the atomic current-pin commit both occur within the proof validity window with no grace period; the receipt names the active controller DID and signing key and has the sole decision `replace_inert_pin_only`. It authorizes pin replacement and explicitly authorizes no connection, consent, disclosure, send, or emergency recovery. A local candidate commitment MUST bind the same `subject_id`; a UI label, alias, filename, or database identifier cannot substitute for it.
+
+Adoption serializes per host and revalidates the exact current prior pin, candidate, proof, controller key, confirmation, and successor while holding the lock. Before the commit point it durably prepares a controller-authenticated transition containing the complete prior pin/descriptor, proof, confirmation, and successor pin. Exactly one atomic replacement of the authoritative current-pin file or pointer is the commit point. History publication and candidate cleanup are deterministic finalization steps, never additional authority changes.
+
+Crash recovery inspects the authenticated prepared transition and current pin. If the prior pin remains current, it restores or retains the inert candidate and removes the uncommitted preparation. If the exact successor pin is current, it retains complete append-only history and consumes only the matching candidate. Any third state, missing authenticated transition material, mismatched hash, competing successor, or ambiguous current pin fails closed for manual quarantine. Repeating the same confirmed subject is idempotent; a competing confirmation cannot overwrite it. Fault injection before and after every boundary plus concurrent confirmation tests are release blockers. Filesystem signatures do not independently prevent rollback by an attacker controlling both storage and controller keys; external anchors remain a separate assurance requirement.
+
 ## 12. Return-encryption descriptor and query authority
 
 A return descriptor is not independently signed. It is a complete object inside the signed inner request payload.

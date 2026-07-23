@@ -52,7 +52,7 @@ If these assumptions are unmet, interfaces must report degraded security rather 
 |---|---|---|
 | consent bypass | private work leaves Soma | off-by-default observer, signed grant, egress firewall, fail-closed class/purpose/destination checks |
 | key exfiltration | attacker controls an agent or validator | OS/hardware keystore, path containment, no bearer-to-arbitrary-URL tools, rotation and revocation |
-| host rotation takeover | stolen current key silently installs attacker keys or changes policy | prior descriptor precommitment, exact predecessor/sequence, dual role-separated signatures, immutable-field checks, short proof window, mandatory controller reconfirmation; ordinary recovery blocked after total compromise |
+| host rotation takeover or split local pin | stolen current key installs attacker keys, confirmation is rebound, or a crash/race leaves ambiguous authority | prior descriptor precommitment, exact predecessor/sequence, dual role-separated signatures, immutable-field checks, short proof window, controller-signed exact-subject confirmation, one atomic current-pin commit point, authenticated prepared transition, deterministic recovery, append-only history, idempotency/conflict tests; ordinary recovery blocked after total compromise |
 | replay or field substitution | valid signature authorizes another action | domain-separated full envelope, audience, network, action, nonce, expiry, payload commitment |
 | self-issued reputation | Sybil fabricates trust | independent receipts, contextual formulas, issuer weighting, disputes, decay, collusion analysis |
 | receipt replay | repeated payment or issuance | globally unique receipt ID, consumed-state bit, actor/counterparty binding, finality |

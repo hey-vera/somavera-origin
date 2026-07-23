@@ -368,11 +368,16 @@ and ingestion keys, exact change scope, and a maximum 900-second validity window
 Origin, host identity, network/context, release, policy, TLS/discovery, protocols,
 capabilities, disclosures, regions, subprocessors, retention, and limits cannot
 change in ordinary succession. The proof authorizes continuity only; clients must
-obtain separate controller confirmation before replacing a pin. New streams use
-the confirmed active ingestion key; a prior key is accepted only for an already
-bound, unexpired stream issued within its historic validity. Sequence gaps,
-uncommitted keys, downgrade, revocation, field substitution, or signature failure
-stop service. Emergency compromise recovery remains unsupported until a distinct
+obtain the controller-signed confirmation in
+`schemas/soma-host-succession-confirmation.schema.json` before replacing a pin.
+That receipt binds the exact descriptor/proof subject and authorizes inert local
+pin replacement only. It cannot authorize connection, consent, disclosure, send,
+or emergency recovery. New streams use the confirmed active ingestion key only
+after the local atomic transition commits; a prior key is accepted only for an
+already bound, unexpired stream issued within its historic validity. Sequence gaps,
+uncommitted keys, downgrade, revocation, field substitution, signature failure,
+ambiguous crash recovery, or competing confirmation stop service. Emergency
+compromise recovery remains unsupported until a distinct
 precommitted recovery-authority profile is ratified. Storage-KEK rewrap
 preserves signed content, received-envelope commitments, acknowledgements, and
 object IDs. Re-encryption and rewrap append signed host-local

@@ -25,8 +25,8 @@
     },
     {
       "path": "ASSURANCE-CASE.md",
-      "bytes": 12010,
-      "sha256": "6f62152744ef023ef61887f491e15da9c82f618e04f5b95d100a3ee701de1325"
+      "bytes": 12254,
+      "sha256": "2c25e0e118f189bb3b3aae70f0718f7dddb1dd9444d2fe9485528b8149a36847"
     },
     {
       "path": "CONFIDENTIAL-COMPUTE.md",
@@ -60,8 +60,8 @@
     },
     {
       "path": "ID-DERIVATION.md",
-      "bytes": 35834,
-      "sha256": "5962cb9fbc4c62ba5af08b8a4fcea9ea37f270d4b492ec21edc04d30bd757b3c"
+      "bytes": 39242,
+      "sha256": "fd75f4c48596783a491036d3b0fa0a777e2a567427ce7952cfe2d5c4d18066e3"
     },
     {
       "path": "LICENSE",
@@ -105,8 +105,8 @@
     },
     {
       "path": "THREAT-MODEL.md",
-      "bytes": 7338,
-      "sha256": "379c2ceef6f24df6f22aec9fc95dfd85d211990529d4cc57da19ab2c42b549f3"
+      "bytes": 7553,
+      "sha256": "42ee2aed52fdaf66696d0e331d249e16a5ecb35213bf86d703c551908c6c2382"
     },
     {
       "path": "TOKEN-OPERATIONS.md",
@@ -120,8 +120,8 @@
     },
     {
       "path": "conformance/PROTOTYPE-ACCEPTANCE.md",
-      "bytes": 75175,
-      "sha256": "56f6fee3feb55936522376f8e833099570d74228e9f3cc5a17efe9c02929e811"
+      "bytes": 75817,
+      "sha256": "a8705b8ce622d7968457df14ce32c4131b93939f36e00dd1b2f5259fbd8b7ae9"
     },
     {
       "path": "conformance/README.md",
@@ -147,6 +147,16 @@
       "path": "conformance/host-descriptor-succession-v1.json",
       "bytes": 30783,
       "sha256": "d27d3d31a006944497cda1817ba18d22cafd1ddf78f76e5f9aa2201863b8e338"
+    },
+    {
+      "path": "conformance/host-succession-confirmation-invalid-v1.json",
+      "bytes": 5209,
+      "sha256": "e6bbc9f99072b37f5e97ba16e5a0d2711cc178b07b9d6d53ffe4acd759ddd3a4"
+    },
+    {
+      "path": "conformance/host-succession-confirmation-v1.json",
+      "bytes": 6302,
+      "sha256": "56320521ea80724b4a72c0b1f994cc117f1edf5208ae980ac40f1e9ad9874b69"
     },
     {
       "path": "conformance/recovery-adversarial-v1.json",
@@ -237,6 +247,11 @@
       "path": "examples/signed-event.example.json",
       "bytes": 1193,
       "sha256": "c4dfd94328d34db4e6bb18f5ad587ed520bb3b141ba0438607dea9c7f0009197"
+    },
+    {
+      "path": "examples/soma-host-succession-confirmation.example.json",
+      "bytes": 2135,
+      "sha256": "c6290966427c4f12753de59aad52bbfba1e882902c341f018d36866a2eaf1ede"
     },
     {
       "path": "examples/token-activation.example.json",
@@ -359,6 +374,11 @@
       "sha256": "e1fd456d2d7fd87d920840631b66a92a4f7fe1195bc75ce1b0ddedbae9b8a990"
     },
     {
+      "path": "schemas/soma-host-succession-confirmation.schema.json",
+      "bytes": 4452,
+      "sha256": "c6ddf82438897850f86f08de5ab0caabe95cb09ac51a42b2423cdccb1bc416db"
+    },
+    {
       "path": "schemas/token-activation.schema.json",
       "bytes": 6930,
       "sha256": "b5b73b41a5864b2c772627bf87f300fce6b3cfaf42401b7622bec96aa445460d"
@@ -410,13 +430,18 @@
     },
     {
       "path": "scripts/check-conformance.mjs",
-      "bytes": 816,
-      "sha256": "6195b672f103e65d2203f611237822238ecb58b6e52cd0000c7b2a3fd59a20a1"
+      "bytes": 962,
+      "sha256": "cee24a90c5e115be2357a29fcdc120df416117c025c65719668f3140fedd62a2"
     },
     {
       "path": "scripts/generate-host-descriptor-succession-vector.mjs",
       "bytes": 10333,
       "sha256": "1d602699fd2002e560abfa892191e2dba8a29a7a27930af2fe5e4a8639732cfa"
+    },
+    {
+      "path": "scripts/generate-host-succession-confirmation-vector.mjs",
+      "bytes": 9100,
+      "sha256": "4d62e561383e55ab35cfee67972a58c32e79f68e26099f3c6eb24046f5c17a66"
     },
     {
       "path": "scripts/lib/canonicalize.mjs",
@@ -437,6 +462,11 @@
       "path": "scripts/lib/full-schema-conformance.mjs",
       "bytes": 2875,
       "sha256": "ba2199fdbc3b85aaa68b74b42535f9249e30d278e9854ec89f6023a1ee2e8c50"
+    },
+    {
+      "path": "scripts/lib/host-confirmation-conformance.mjs",
+      "bytes": 9379,
+      "sha256": "e14e3c85c1b24f259f5357dc6df1dacc53620c6a707dafd7d14114ccd7235374"
     },
     {
       "path": "scripts/lib/host-succession-conformance.mjs",
@@ -480,8 +510,8 @@
     },
     {
       "path": "specs/soma/PROTOTYPE-SPEC.md",
-      "bytes": 73767,
-      "sha256": "6bb14b469d7a3eccdec911440e44ded64340a044246ba27a5614611c5366337a"
+      "bytes": 75299,
+      "sha256": "4be5a660a15f9930ea9ca7175bd512e45b4a15107c8c0d0314140442ae22c2c3"
     },
     {
       "path": "specs/vera-host/ORIGIN-SPEC.md",
@@ -490,9 +520,9 @@
     },
     {
       "path": "specs/vera-host/PROTOTYPE-SPEC.md",
-      "bytes": 47761,
-      "sha256": "2a247dae301827699d2b76d559ae24868cdae77745f46938d90b5116fff6cb0c"
+      "bytes": 48104,
+      "sha256": "5d4bcfba15649b5040b40cc8e3aeb5d396b6d3d5f1abec1ca747f0af005c8dc4"
     }
   ],
-  "capsule_root": "ee8bb4f2a851ecd103a84db988e24eb2241ec702c9f0743045a2e83008f89e7d"
+  "capsule_root": "8cb60c8ce3199aa35c101657834eece86e8823e9d6aa8eb47a9e23db89582431"
 }
