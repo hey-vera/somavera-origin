@@ -277,6 +277,8 @@ soma status reports identity, key roles and status, enforcement mode, observer/g
     soma identity show
     soma identity backup --output PATH
     soma identity restore --input PATH
+    soma identity controller-rotate-preview --reason TEXT
+    soma identity controller-rotate-confirm --proposal-id HASH --expect-successor-key-hash HASH --confirm-controller-rotation
     soma key rotate --role ROLE --reason TEXT
     soma key revoke --key-id KEY_ID --reason TEXT
     soma key history
@@ -293,7 +295,9 @@ identity backup creates a separately encrypted recovery bundle. It MUST:
 
 identity restore MUST verify and decrypt before any state mutation, show the identity and recovery authority to the user, restore into an empty home or an explicit transactional merge, rotate online keys, and preserve continuity only when the recovery chain proves it. Without valid recovery authority it MUST offer a new identity, not an identity takeover.
 
-Rotation and revocation MUST use ratified signed events, update connected hosts idempotently, retain historic public verification windows, and leave a visible pending state until required acknowledgements arrive. A compromised key revocation cannot rely solely on that same compromised key when the precommitted policy requires recovery authority.
+Ordinary controller rotation uses the closed event and domains in `soma-controller-key-rotation.schema.json` and `ID-DERIVATION.md`. Preview runs offline, creates a fresh successor only in protected pending storage, displays the exact stable controller identity, old/new key commitments, sequence, predecessor, time limit, private-key disposition, rollback limitation, and authority exclusions, and grants no effect. Confirm requires the exact immutable proposal ID, exact successor raw-key SHA-256, and an explicit rotation flag. It dual-signs with the live prior key and fresh successor, then uses one atomic identity commit with deterministic crash recovery. The stable controller DID never changes; the old public key and interval remain verifiable; the old private key is destroyed only after the committed successor keystore is recoverable.
+
+This ordinary profile is allowed only while the prior key is believed uncompromised and the local prototype has zero connected hosts, grants, queued work, or pending network acts. It authorizes no recovery, connection, consent, disclosure, send, token, or governance action. It cannot safely repair suspected compromise, and its local signed history is not independent rollback evidence. Rotation and revocation generally MUST use ratified signed events, update connected hosts idempotently, retain historic public verification windows, and leave a visible pending state until required acknowledgements arrive. A compromised key revocation cannot rely solely on that same compromised key when the precommitted policy requires recovery authority.
 
 ### 7.3 Host connection
 

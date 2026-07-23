@@ -7,6 +7,9 @@ await import("./lib/recovery-conformance.mjs");
 // Exact noncircular recovery identifiers and signature-message projections.
 await import("./lib/recovery-domain-conformance.mjs");
 
+// Closed ordinary Soma controller-key rotation and adversarial lifecycle checks.
+await import("./lib/controller-key-rotation-conformance.mjs");
+
 // Closed ordinary Vera host descriptor succession and adversarial rotation checks.
 await import("./lib/host-succession-conformance.mjs");
 

@@ -245,6 +245,40 @@ The following are distinct key IDs, distinct public keys, and distinct private-k
 
 A verifier rejects a descriptor, request, response, or acknowledgement if a signing key ID or public key equals an encryption key ID or public key in the same trust context. A key changing purpose requires a new key pair and key ID. Algorithm labels do not waive role separation.
 
+### 10.2 Ordinary Soma controller-key rotation
+
+The closed event in `soma-controller-key-rotation.schema.json` rotates only a live, uncompromised controller-signing key. The controller DID is a stable identity anchor and MUST NOT change. The successor key has a distinct DID-derived key ID, but the signed rotation chain authorizes it to act for that stable controller. A key compromise is not ordinary rotation: because an attacker holding the prior key could authorize an attacker-chosen successor, suspected compromise requires a separately precommitted recovery authority and remains unsupported by this profile.
+
+Preview first commits the immutable proposal projection. It contains the schema/profile, stable controller, sequence/predecessor, prior key identity and original validity start, complete successor public key, preparation time, reason, decision, key disposition, rollback claim, and authority object; it excludes the not-yet-known effect time, lifecycle results, signatures, and final event ID:
+
+    proposal_id =
+      H("somavera:soma-controller-key-rotation-proposal:v1\n" ||
+        JCS(controller_key_rotation_proposal_core))
+
+The rotation core is every final event field except `$schema`, `rotation_id`, and `signatures`; it includes that `proposal_id`, the exact effect time, and resulting lifecycle windows:
+
+    rotation_id =
+      H("somavera:soma-controller-key-rotation:v1\n" ||
+        JCS(controller_key_rotation_core))
+
+The currently active controller key signs:
+
+    "somavera:soma-controller-key-rotation-prior-signature:v1\n" ||
+    HEXDEC(rotation_id)
+
+The fresh successor proves possession in a distinct role domain:
+
+    "somavera:soma-controller-key-rotation-successor-signature:v1\n" ||
+    HEXDEC(rotation_id)
+
+Sequence is exactly prior plus one; `previous_rotation_id` is the authenticated prior head or null only for sequence one. The prior key and its original `valid_from` must exactly match authenticated current history. Its `valid_until` and the successor's `valid_from` both equal `effective_at`; the former becomes `retired`, the latter becomes the only `active` controller key, and neither a gap nor overlap is permitted. The successor is fresh Ed25519 material with a correct raw-key SHA-256. `effective_at` cannot precede `prepared_at` or exceed it by more than 900 seconds.
+
+Preparation is offline and stores the successor private key only in protected pending storage. Confirmation displays the stable controller DID, sequence/predecessor, both key IDs and fingerprints, effective time, reason, old-key destruction rule, rollback limitation, and every authority exclusion. The user must supply the exact proposal ID and successor key hash plus an explicit controller-rotation flag. The final effect time, resulting event ID, and both signatures are created only after that confirmation; preview never claims that an unconfirmed key is already active.
+
+One serialized transaction durably prepares the final identity, public history, rotation event, and protected successor keystore. Exactly one atomic current-identity replacement or pointer change is the commit point. Before it, recovery restores the prior identity and protected pending proposal; after it, recovery finalizes exact history and the successor keystore before destroying the prior private key. A third state or mismatched prepared bytes is quarantined. Concurrent identical confirmation is idempotent and competing confirmation conflicts. Old public bytes and validity windows remain; the old private key does not.
+
+This event authorizes only controller-key replacement. It grants no agent/observer rotation, identity or emergency recovery, connection, consent, disclosure, send, token, or governance act. Its signed local chain proves consistency, not independent rollback resistance. Rollback assurance requires exact history or a compatible trust capsule preserved outside the candidate device.
+
 ## 11. Vera host descriptor
 
 The only v1 discovery target is the exact HTTPS origin plus:

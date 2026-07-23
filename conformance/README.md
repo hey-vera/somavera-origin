@@ -12,6 +12,8 @@ required independent second implementation nor a security certification.
 
 `wire-invalid-v1.json` mutates the valid-shape wire examples and pins mandatory rejection of discovery-path substitution, signing/encryption key-role reuse, circular fields, clear plaintext fingerprints, outer/header mismatches, chunk-count mismatch, return-key substitution, contradictory acknowledgement decisions, signing-key mismatch, invalid delegation, and missing citation sources.
 
+`controller-key-rotation-v1.json` pins the stable Soma controller identity, exact old/new key lifecycle, event canonical bytes/ID, and distinct prior/successor signatures. Its invalid companion covers sequence, predecessor, key/hash/window, time, status, disposition, rollback-claim, authority, ID, and signature attacks; the profile is ordinary live-key rotation only, never compromise recovery.
+
 `host-descriptor-succession-v1.json` pins deterministic prior and successor descriptor canonical bytes, IDs, descriptor signatures, proof bytes/ID, and distinct prior/successor proof-signature domains. `host-descriptor-succession-invalid-v1.json` pins rejection of sequence/predecessor substitution, immutable changes, uncommitted keys, scope and time expansion, signature replay/corruption, historic-key deletion, revocation smuggling, overlap expansion, and authority escalation. This closes only ordinary continuity; controller confirmation and a separately ratified emergency-recovery authority remain required.
 
 The checker performs standards-complete Draft 2020-12 schema meta-validation,
