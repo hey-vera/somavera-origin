@@ -23,6 +23,7 @@ Public releases should say **fail-closed**, **independently verifiable**, **repr
 - Evidence tampering, deletion, insertion, reordering, and truncation are detectable.
 - Ordinary host succession cannot change the pin without a controller signature over the exact successor subject; crash or race recovery yields exactly the prior or successor inert pin, never connection, consent, disclosure, or send authority.
 - A portable host-trust capsule commits complete current pin and succession-history bytes and verifies offline against an independently supplied controller fingerprint; it is explicitly not an external anchor or restore authority, and detects rollback only when compared with a separately preserved prior capsule.
+- Ordinary Soma controller rotation preserves one stable controller identity through an exact old/new dual-signed chain, one atomic commit, historical public verification, and post-commit old-private-key destruction; it expressly does not claim compromise recovery or independent rollback resistance.
 - Loss, rotation, revocation, export, and exit have documented behavior without a universal backdoor.
 
 ### Vera Host
