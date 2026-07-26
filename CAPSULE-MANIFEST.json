@@ -25,8 +25,8 @@
     },
     {
       "path": "ASSURANCE-CASE.md",
-      "bytes": 12869,
-      "sha256": "0de6d7aae833d8003660f44f1b2884d676952bd09b73715eeeaabc5ad43bf897"
+      "bytes": 13073,
+      "sha256": "6630099931844520f2340d6098cb45375ede07d2ee9688ed4dc9dcabbcb9df41"
     },
     {
       "path": "CONFIDENTIAL-COMPUTE.md",
@@ -60,8 +60,8 @@
     },
     {
       "path": "ID-DERIVATION.md",
-      "bytes": 45617,
-      "sha256": "5974d9bbc569a4e890af1e397e49fa0df4aa2076bee9bac449bbf74cf331dca7"
+      "bytes": 47126,
+      "sha256": "e528c52be1d8f8c8e3a8252518ea7f1c4e17380e0b128ccba577afca557bbe0b"
     },
     {
       "path": "LICENSE",
@@ -105,8 +105,8 @@
     },
     {
       "path": "THREAT-MODEL.md",
-      "bytes": 8497,
-      "sha256": "eb0cc3113e815d88b0a956131e8a9c079c3390c74eccfdf4b5125f6270ce415f"
+      "bytes": 8610,
+      "sha256": "3c1c078fb2a1e71cafb3c307a96e0876cbd9355acf2999c428496fe21609fae9"
     },
     {
       "path": "TOKEN-OPERATIONS.md",
@@ -120,13 +120,13 @@
     },
     {
       "path": "conformance/PROTOTYPE-ACCEPTANCE.md",
-      "bytes": 77707,
-      "sha256": "8a30055db652d90cc017eed046260a51a6d4f9d001b825fc449ca7660c5ece7f"
+      "bytes": 77944,
+      "sha256": "d55c3156cb2308edba7cd7839cf93b26c4c8a961fdb086e26847f702e2f5ffdb"
     },
     {
       "path": "conformance/README.md",
-      "bytes": 2827,
-      "sha256": "0c12edd953eaae64af2c7dd7f14ed38e218e31e3c73209554c956e795fa4a550"
+      "bytes": 3404,
+      "sha256": "df24670abded5294b89f8da5d583908b0936a1d11a8ab25ef552175f47cdddbe"
     },
     {
       "path": "conformance/canonicalization-v1.json",
@@ -174,9 +174,19 @@
       "sha256": "c6eb3a38fbac8a439e54e6a6e60986c1e5213a82d2f5c050eba5bd953a408338"
     },
     {
+      "path": "conformance/host-trust-capsule-invalid-v2.json",
+      "bytes": 2000,
+      "sha256": "e24fb029cf77d0c842dcebe4f898ef059022f112408251c6b818a0c9e854f3ba"
+    },
+    {
       "path": "conformance/host-trust-capsule-v1.json",
       "bytes": 9013,
       "sha256": "f6f59816a86116cd2cc48ae8c55a3ec67a60999297815e3fd4fa4de591b29af6"
+    },
+    {
+      "path": "conformance/host-trust-capsule-v2.json",
+      "bytes": 18083,
+      "sha256": "2c8a8c518220ace2676a8ac191c9fa65bc2c3b8912a645171e6ccb509406ee62"
     },
     {
       "path": "conformance/recovery-adversarial-v1.json",
@@ -277,6 +287,11 @@
       "path": "examples/soma-host-succession-confirmation.example.json",
       "bytes": 2135,
       "sha256": "c6290966427c4f12753de59aad52bbfba1e882902c341f018d36866a2eaf1ede"
+    },
+    {
+      "path": "examples/soma-host-trust-capsule-v2.example.json",
+      "bytes": 8618,
+      "sha256": "11889e21ba5a10264b0e27f45fb19778787238780e519406acfe49c50ae4fedd"
     },
     {
       "path": "examples/soma-host-trust-capsule.example.json",
@@ -414,6 +429,11 @@
       "sha256": "c6ddf82438897850f86f08de5ab0caabe95cb09ac51a42b2423cdccb1bc416db"
     },
     {
+      "path": "schemas/soma-host-trust-capsule-v2.schema.json",
+      "bytes": 6977,
+      "sha256": "c249df68a6411525be130a053fe37f8e43fdf84187c9b72afbbc3a2bb0db273a"
+    },
+    {
       "path": "schemas/soma-host-trust-capsule.schema.json",
       "bytes": 5715,
       "sha256": "b8411300b2151221480d7416e9cae462f19cd9f9d7e70ebc4b561bb5eb35398b"
@@ -470,8 +490,8 @@
     },
     {
       "path": "scripts/check-conformance.mjs",
-      "bytes": 1264,
-      "sha256": "469ff6300d6779f1c663aeeab4471545e55e1cc26b11a2d1fbc5d6ff5e990729"
+      "bytes": 1433,
+      "sha256": "1e442a0104eb5bfadfa9e006c21e7713df60dd5023145aeb6a08a8510ffdd929"
     },
     {
       "path": "scripts/generate-controller-key-rotation-vector.mjs",
@@ -487,6 +507,11 @@
       "path": "scripts/generate-host-succession-confirmation-vector.mjs",
       "bytes": 9100,
       "sha256": "4d62e561383e55ab35cfee67972a58c32e79f68e26099f3c6eb24046f5c17a66"
+    },
+    {
+      "path": "scripts/generate-host-trust-capsule-v2-vector.mjs",
+      "bytes": 8608,
+      "sha256": "a4ebeb05392b3062a8340b66d798649c6fd3edabf97c7c6daf7fc000c5b153c9"
     },
     {
       "path": "scripts/generate-host-trust-capsule-vector.mjs",
@@ -532,6 +557,11 @@
       "path": "scripts/lib/host-trust-capsule-conformance.mjs",
       "bytes": 8065,
       "sha256": "24eef3954f30a7bd50c34596c6a2b451e777a61da9031abdcb13e9de6fe0eaf2"
+    },
+    {
+      "path": "scripts/lib/host-trust-capsule-v2-conformance.mjs",
+      "bytes": 11601,
+      "sha256": "b0bcd6635978e46dab42fcd85c2267ff4b8cff769cfb15d08c43551e6f40a474"
     },
     {
       "path": "scripts/lib/recovery-conformance.mjs",
@@ -584,5 +614,5 @@
       "sha256": "5d4bcfba15649b5040b40cc8e3aeb5d396b6d3d5f1abec1ca747f0af005c8dc4"
     }
   ],
-  "capsule_root": "9f711a3a8e53502c464efd2798266067adc2d42995246acb3b496c05ef948fb0"
+  "capsule_root": "047b76b3a96e536893f3dff1a5dc62cd3ac83669769395fe8f48d629e050084f"
 }

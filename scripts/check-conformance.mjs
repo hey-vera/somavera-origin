@@ -19,6 +19,9 @@ await import("./lib/host-confirmation-conformance.mjs");
 // Complete signed portable host-trust bytes with explicit non-anchor and non-restore authority.
 await import("./lib/host-trust-capsule-conformance.mjs");
 
+// Controller-history-capable portable host-trust bytes anchored to an independently expected initial key.
+await import("./lib/host-trust-capsule-v2-conformance.mjs");
+
 // Standards-complete JSON Schema 2020-12 validation for every schema/example pair.
 await import("./lib/full-schema-conformance.mjs");
 
