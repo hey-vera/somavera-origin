@@ -4,12 +4,14 @@ import path from "node:path";
 
 const EXCLUDED_NAMES = new Set([
   ".git",
+  ".github",
   "node_modules",
   "CAPSULE-MANIFEST.json"
 ]);
 
 export const excludedPaths = [
   ".git/",
+  ".github/",
   "node_modules/",
   "CAPSULE-MANIFEST.json"
 ];

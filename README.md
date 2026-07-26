@@ -1,9 +1,16 @@
 # Somavera Origin
 
 Status: **draft 0.1 - not ratified, not production-ready**
-Purpose: a small, public, independently mirrorable recovery capsule for rebuilding Soma and Vera rules into a new Phoenix lineage and, only when authenticated state and checkpoint-pre-state authority survive, proposing exact VERA economic continuity.
+Purpose: the canonical, independently mirrorable `somavera/origin/` recovery capsule for rebuilding Soma and Vera rules into a new Phoenix lineage and, only when authenticated state and checkpoint-pre-state authority survive, proposing exact VERA economic continuity.
 
 No live chain or token is created by this repository. No current `somavera` prototype balance is economically valid.
+
+The canonical working copy is the `origin/` directory of
+[`hey-vera/somavera`](https://github.com/hey-vera/somavera). The
+[`hey-vera/somavera-origin`](https://github.com/hey-vera/somavera-origin)
+repository is an independently cloneable recovery mirror, not a second source
+of authority. A valid mirror has the same capsule bytes and capsule root;
+hosting metadata and CI configuration are excluded from the capsule.
 
 ## The survival promise
 
