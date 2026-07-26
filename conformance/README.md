@@ -16,6 +16,8 @@ required independent second implementation nor a security certification.
 
 `host-descriptor-succession-v1.json` pins deterministic prior and successor descriptor canonical bytes, IDs, descriptor signatures, proof bytes/ID, and distinct prior/successor proof-signature domains. `host-descriptor-succession-invalid-v1.json` pins rejection of sequence/predecessor substitution, immutable changes, uncommitted keys, scope and time expansion, signature replay/corruption, historic-key deletion, revocation smuggling, overlap expansion, and authority escalation. This closes only ordinary continuity; controller confirmation and a separately ratified emergency-recovery authority remain required.
 
+`host-trust-capsule-v1.json` preserves the original pre-controller-rotation portable format for verification compatibility. `host-trust-capsule-v2.json` adds the complete ordered dual-signed controller-rotation chain, an independently expected initial-key anchor, historical key-window verification, active-key capsule signing, and distinct v2 roots. Its invalid companion covers initial-key substitution, missing/reordered rotation history, either rotation signature, head/count/root substitution, active-key substitution, claim widening, and capsule-signature corruption.
+
 The checker performs standards-complete Draft 2020-12 schema meta-validation,
 positive example validation, generated structural-negative validation, the
 legacy defensive schema-subset checks, and explicit token, recovery, and wire
