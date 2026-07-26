@@ -3,12 +3,12 @@
 Status: organizational guidance for the draft phase; this file does not override
 the canonical truth order in `README.md`.
 
-## Canonical repositories
+## Canonical repositories and mirrors
 
 | Repository | Owns | Must not become |
 |---|---|---|
-| [`somavera-origin`](https://github.com/hey-vera/somavera-origin) | The independently mirrorable Origin capsule: rights, governance, recovery, economic constraints, schemas, and conformance contracts | A live service, wallet, token sale, private-data store, or product backlog |
-| [`somavera`](https://github.com/hey-vera/somavera) | The open-network applications: owner-controlled `soma/` agent body, independently operated `vera-host/`, shared integration tests, and release tooling | The constitutional authority or a HeyVera-only service |
+| [`somavera`](https://github.com/hey-vera/somavera) | The canonical `origin/` capsule and open-network applications: owner-controlled `soma/`, independently operated `vera-host/`, shared integration tests, and release tooling | A HeyVera-only service, private-data store, or authority that can silently override ratified Origin |
+| [`somavera-origin`](https://github.com/hey-vera/somavera-origin) | A byte-identical, independently cloneable mirror of the canonical `somavera/origin/` capsule | A second authority, divergent specification, live service, wallet, token sale, or product backlog |
 | [`Soma`](https://github.com/hey-vera/Soma) | The reusable, platform-independent Soma cryptographic trust protocol and SDK | A second Somavera application, hosted product, or Vera intelligence service |
 | [`heyvera`](https://github.com/hey-vera/heyvera) | The first-party product and managed-service layer: website, social network, coding harness, hosting UX, marketplace, and adapters | Protocol truth, mandatory infrastructure, or owner of the open network |
 
@@ -17,6 +17,21 @@ contracts, but it does not define either protocol.
 
 The archived `veraAI` repository is historical implementation context only.
 Normative Vera Host work belongs in `somavera/vera-host/`.
+
+## One constitutional system, independently packageable programs
+
+Origin, Soma, and Vera Host share one repository because a valid network release
+must bind their exact compatibility surface atomically. Same-repository location
+is convenience, not the security guarantee. A release is valid only when its
+signed manifest commits to the exact Origin capsule root, conformance profile,
+Soma artifact, Vera Host artifact, and Genesis or succession state required by
+the ratified specifications.
+
+The `somavera-origin` repository is a distribution and disaster-recovery
+mirror. Its capsule bytes and root must match `somavera/origin/`; repository
+history, hosting configuration, branch names, and CI files are not protocol
+authority. Divergent mirror bytes are a candidate fork and must never be
+presented as canonical merely because they use the same name.
 
 ## Why Soma and Vera Host share one implementation repository
 
@@ -57,8 +72,8 @@ the legacy source.
 
 ## Change routing
 
-- Rights, recovery, economics, governance, or protocol schemas:
-  `somavera-origin`.
+- Rights, recovery, economics, governance, protocol schemas, or conformance:
+  `somavera/origin/`.
 - Agent-body or Vera Host runtime behavior and shared network tests:
   `somavera`.
 - Reusable cryptographic trust primitives:
@@ -68,5 +83,5 @@ the legacy source.
 - General-purpose agent orchestration:
   `Cortex`.
 
-No repository rename, archive, or split changes protocol authority by itself.
-Only the ratification and succession rules in Origin can do that.
+No repository rename, archive, mirror, or split changes protocol authority by
+itself. Only the ratification and succession rules in Origin can do that.

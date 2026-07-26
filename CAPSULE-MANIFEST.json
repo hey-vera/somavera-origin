@@ -4,6 +4,7 @@
   "canonicalization": "RFC8785-JCS-with-Somavera-I-JSON-rejections",
   "excluded_paths": [
     ".git/",
+    ".github/",
     "node_modules/",
     "CAPSULE-MANIFEST.json"
   ],
@@ -12,11 +13,6 @@
       "path": ".gitattributes",
       "bytes": 114,
       "sha256": "6459c29da538ee328575903d2f0c0231fbf7c9ce21d9bdc50e63f155d9cd66ba"
-    },
-    {
-      "path": ".github/workflows/origin-conformance.yml",
-      "bytes": 812,
-      "sha256": "21a3d9d50f79ece2c4dc9ec008f3a69ff063576fd645cb34174018486379170a"
     },
     {
       "path": ".gitignore",
@@ -90,8 +86,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5512,
-      "sha256": "328f43c5affd4c3bb6f19392bc27c1ce2b8f0c4b95a7089f65228624e8b7ebb5"
+      "bytes": 5947,
+      "sha256": "772cd49d4fe2bd3335317e57a5c1c9d7ccba159112e77ad6516d824456dae299"
     },
     {
       "path": "RECOVERY.md",
@@ -100,8 +96,8 @@
     },
     {
       "path": "REPOSITORY-MAP.md",
-      "bytes": 3863,
-      "sha256": "cb79984aa4dc30489b57a4e3442c940a4a343ae1e31ff70674fc251083126116"
+      "bytes": 4802,
+      "sha256": "352e3f7d64584409a957d36f89f4294a1424a4fcd361e77192dd6fc38d0f7e5d"
     },
     {
       "path": "SECURITY.md",
@@ -351,7 +347,7 @@
     {
       "path": "package-lock.json",
       "bytes": 3175,
-      "sha256": "a72c17554c40e785448e9c487dc7a81e6caa80bbc897e3e2be32711f2899e829"
+      "sha256": "60dbf1a748df0a22e13c0dc75ef31625da1c3a53a82fde652ed797117d1ba21e"
     },
     {
       "path": "package.json",
@@ -535,8 +531,8 @@
     },
     {
       "path": "scripts/lib/capsule-files.mjs",
-      "bytes": 1536,
-      "sha256": "262d0f7d66255906063c13c440b87239c9a030f6b9b177f0873fb52cd188c350"
+      "bytes": 1563,
+      "sha256": "b3a94a2ef59bf540205338f5bc5fe38be93eeff46064499196227bc945868492"
     },
     {
       "path": "scripts/lib/controller-key-rotation-conformance.mjs",
@@ -624,5 +620,5 @@
       "sha256": "5d4bcfba15649b5040b40cc8e3aeb5d396b6d3d5f1abec1ca747f0af005c8dc4"
     }
   ],
-  "capsule_root": "3bebd4d13f733c0ad58280c0467f8e79b212400604dd595a0cf3e15af052b663"
+  "capsule_root": "e1e986648dec5d99aeefdb3fdc14db92b601e6f3ea30bf2e3f6babb97af7e83c"
 }
