@@ -14,6 +14,11 @@
       "sha256": "6459c29da538ee328575903d2f0c0231fbf7c9ce21d9bdc50e63f155d9cd66ba"
     },
     {
+      "path": ".github/workflows/origin-conformance.yml",
+      "bytes": 812,
+      "sha256": "21a3d9d50f79ece2c4dc9ec008f3a69ff063576fd645cb34174018486379170a"
+    },
+    {
       "path": ".gitignore",
       "bytes": 187,
       "sha256": "5f20c020969563358f8e8fb152e96958a4eda8b0c24f0f93baac0b45c5db74d5"
@@ -85,13 +90,18 @@
     },
     {
       "path": "README.md",
-      "bytes": 5407,
-      "sha256": "43034a37decf8ee10b4e06906131feeae19057b925f0a69f054de267ed996eda"
+      "bytes": 5512,
+      "sha256": "328f43c5affd4c3bb6f19392bc27c1ce2b8f0c4b95a7089f65228624e8b7ebb5"
     },
     {
       "path": "RECOVERY.md",
       "bytes": 14442,
       "sha256": "117b5fc185eede6cfea71a9058dab82fde1cb205840e0fb6d799bf779e96f749"
+    },
+    {
+      "path": "REPOSITORY-MAP.md",
+      "bytes": 3863,
+      "sha256": "cb79984aa4dc30489b57a4e3442c940a4a343ae1e31ff70674fc251083126116"
     },
     {
       "path": "SECURITY.md",
@@ -125,8 +135,8 @@
     },
     {
       "path": "conformance/README.md",
-      "bytes": 3404,
-      "sha256": "df24670abded5294b89f8da5d583908b0936a1d11a8ab25ef552175f47cdddbe"
+      "bytes": 3400,
+      "sha256": "d1ae0d567256afe0b5cb5f71f9e2a9e2390d9672560248474e3cb272531688b4"
     },
     {
       "path": "conformance/canonicalization-v1.json",
@@ -360,13 +370,13 @@
     },
     {
       "path": "schemas/consent-grant.schema.json",
-      "bytes": 3858,
-      "sha256": "393c39d10f474e736e2eea1fec839fdc6f337069737f27a4ab7f92f8b5da4f32"
+      "bytes": 3706,
+      "sha256": "bb8f1c38e3a2deb052a5ac296237ad99c06fb6b81887666a1d808969de61018c"
     },
     {
       "path": "schemas/evidence-event.schema.json",
-      "bytes": 2706,
-      "sha256": "4c5a5ea32cdca016d78c11393bfd9b2cc6312028607b5df2dfe0ec7249b5746e"
+      "bytes": 2601,
+      "sha256": "4008207e206df3cd350fe324ce535b10eb43c1097032e8cbb22fb14543d10fed"
     },
     {
       "path": "schemas/genesis.schema.json",
@@ -410,13 +420,13 @@
     },
     {
       "path": "schemas/service-receipt.schema.json",
-      "bytes": 3207,
-      "sha256": "445fa5439ee1e43c1653345c6cec2a5ad93c3989d3eb5360e741054631e823d9"
+      "bytes": 3206,
+      "sha256": "5a737f17379632c4f0adc1eaa675c232435cc3d745d1f5a6612d17ae0da40399"
     },
     {
       "path": "schemas/signed-event.schema.json",
-      "bytes": 2590,
-      "sha256": "e1fd456d2d7fd87d920840631b66a92a4f7fe1195bc75ce1b0ddedbae9b8a990"
+      "bytes": 2481,
+      "sha256": "91d09eb17574af566ad11cc1c990720563f64f470de1da675bd00ac8c4bdc934"
     },
     {
       "path": "schemas/soma-controller-key-rotation.schema.json",
@@ -614,5 +624,5 @@
       "sha256": "5d4bcfba15649b5040b40cc8e3aeb5d396b6d3d5f1abec1ca747f0af005c8dc4"
     }
   ],
-  "capsule_root": "047b76b3a96e536893f3dff1a5dc62cd3ac83669769395fe8f48d629e050084f"
+  "capsule_root": "3bebd4d13f733c0ad58280c0467f8e79b212400604dd595a0cf3e15af052b663"
 }
