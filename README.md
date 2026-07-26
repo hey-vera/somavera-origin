@@ -44,6 +44,7 @@ Brainstorms, pitch decks, private notes, implementation comments, and token mark
 - [`GOVERNANCE.md`](GOVERNANCE.md) - separation of powers and anti-capture rules
 - [`THREAT-MODEL.md`](THREAT-MODEL.md) - adversaries, limits, and release blockers
 - [`DECISIONS-NEEDED.md`](DECISIONS-NEEDED.md) - choices that must be ratified before mainnet
+- [`REPOSITORY-MAP.md`](REPOSITORY-MAP.md) - authoritative project boundaries and anti-duplication rules
 - [`SOURCES.md`](SOURCES.md) - informative standards, research, and legal starting points
 - [`specs/soma/ORIGIN-SPEC.md`](specs/soma/ORIGIN-SPEC.md) - exact Soma Origin draft
 - [`specs/soma/PROTOTYPE-SPEC.md`](specs/soma/PROTOTYPE-SPEC.md) - exact Soma Prototype draft
